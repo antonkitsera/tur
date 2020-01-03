@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Hardware and Software Requirements :: Brand Docs</title>
+    <meta name="generator" content="Antora 1.0.0">
+<link rel="stylesheet" href="_/css/site.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+<meta name="description" content="TurtleQueue SaaS documentation"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://turtlequeue.com/doc"/>
+<meta property="og:title" content="TurtleQueue documentation"/>
+
+
+
+<script defer type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="fbdbbaa1-bc69-4ea2-a2ed-001775af0900";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
+<script defer type="text/javascript">!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+    analytics.load("P16YWqiCePH6mse14R3BpuGLcwUfm8Oz");
+    analytics.page();
+  }}();</script>
+
+<script>
+  (function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1012669,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+  })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+  </head>
+  <body class="article">
+<noscript><style> .jsonly { display: none } </style></noscript>
+
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <!-- <a class="navbar-item" href="http://localhost:5252">Brand Docs</a> -->
+      <a href="/" class="navbar-item">
+        <svg width="52" height="23" viewBox="0 0 52 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0)">
+        <path d="M38.4025 18.2064C38.4025 18.2064 38.4025 18.2773 38.4219 18.3717H38.0334L38.4025 18.2064Z" fill="#010202" stroke="#010202" stroke-miterlimit="10"/>
+        <path d="M22.3384 7.43843C18.7643 7.32036 15.5204 6.84808 12.8786 6.32858C11.7714 8.54829 10.703 11.4292 10.1009 14.8532C14.588 16.0811 18.706 16.577 22.3384 16.6243V7.43843ZM22.3384 7.20229V0.495929C21.1341 0.472316 18.8226 0.519543 16.0837 1.20435C15.4038 2.05445 14.18 3.70743 12.9951 6.09244C15.5981 6.63556 18.8031 7.10784 22.3384 7.20229ZM15.734 1.2988C13.3642 1.91277 10.703 3.02262 8.21666 4.88812C9.36272 5.24233 10.9167 5.66738 12.762 6.04521C13.8887 3.8255 15.0153 2.21975 15.734 1.2988ZM12.6843 6.28135C10.7613 5.87991 9.16847 5.43125 8.00299 5.07704C5.86627 6.75363 3.8461 9.02057 2.27269 12.114C4.91446 13.2475 7.47852 14.1448 9.90661 14.806C10.5088 11.382 11.5771 8.52467 12.6843 6.28135ZM10.0814 14.9713C10.0814 14.9241 10.1009 14.8768 10.1009 14.8532C10.0426 14.8296 9.96488 14.8296 9.90661 14.806C9.90661 14.8532 9.88719 14.8768 9.88719 14.9241L10.0814 14.9713ZM28.3407 0.920981C26.0486 0.49593 24.1652 0.495929 23.2125 0.495929C22.9212 0.495929 22.9373 0.495929 22.8669 0.495929C22.6921 0.495929 22.5715 0.495929 22.5327 0.495929V7.22591C25.5241 7.29675 28.7292 7.13145 32.0314 6.51749C30.5551 3.56574 29.0011 1.65301 28.3407 0.920981ZM28.6903 0.991822C29.4479 1.88915 30.8853 3.73104 32.245 6.47026C34.0321 6.13966 35.858 5.66738 37.684 5.05342C34.6926 2.71564 31.4098 1.55856 28.6903 0.991822ZM37.9171 5.21872C36.0523 5.8563 34.2069 6.32858 32.3616 6.68278C33.4494 8.9025 34.4789 11.6653 35.0811 14.9241L34.8868 14.9713C34.2846 11.6889 33.2357 8.92611 32.1479 6.7064C29.2925 7.22591 26.4953 7.43843 23.8536 7.43843C23.4068 7.43843 22.9795 7.43843 22.5327 7.41482V16.6006C26.2234 16.6479 29.3896 16.2701 31.9925 15.7269C38.1113 14.4754 42.0934 12.2321 43.1812 11.5473C41.6855 8.85527 39.8595 6.77724 37.9171 5.21872ZM51.7475 11.0986C50.4266 7.17868 44.2107 11.1222 43.2783 11.7598C43.2977 11.807 43.2589 11.7126 43.2783 11.7598C42.1905 12.421 38.189 14.7115 32.0119 15.9867C29.5644 16.4826 26.5925 16.8604 23.1737 16.8604C17.3269 16.8604 10.1786 15.7505 2.15614 12.3029C1.30146 14.074 0.543892 16.0811 0 18.3717C0 18.3717 2.64176 19.2218 7.09002 20.0247C7.20657 21.2526 7.69219 22.693 9.22674 22.9528C11.4606 23.3306 11.9851 21.5123 12.1016 20.8039C17.8707 21.5123 25.291 21.8666 33.43 20.8984C33.5659 21.654 34.1292 23.3306 36.2854 22.9764C37.8005 22.7167 38.2861 21.3471 38.4221 20.1427L45.7064 18.3245C49.028 17.191 53.0295 14.8768 51.7475 11.0986ZM48.6589 13.4364C48.2122 13.4364 47.8625 13.0113 47.8625 12.4682C47.8625 11.9251 48.2122 11.5 48.6589 11.5C49.1057 11.5 49.4554 11.9251 49.4554 12.4682C49.4554 12.9877 49.1057 13.4364 48.6589 13.4364Z" fill="#4CB944"/>
+        </g>
+        </svg>
+
+        Turtlequeue docs
+      </a>
+
+        <!-- <button class="navbar-burger" data-target="topbar-nav">
+             <span></span>
+             <span></span>
+             <span></span>
+             </button> -->
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item hide-for-print algoliaSearchWrapper algolia-autocomplete jsonly">
+          <input id="algoliaDocsearch"
+            type="text"
+            placeholder="Search in docs"
+            class="ds-input"
+            autocomplete="off"
+            spellcheck="false"
+            role="combobox"
+            aria-autocomplete="list"
+            aria-expanded="false"
+            aria-owns="algolia-autocomplete-listbox-0"
+            dir="auto">
+        </div>
+
+        <!-- <a class="navbar-item" href="#">Home</a>
+             <div class="navbar-item has-dropdown is-hoverable">
+             <a class="navbar-link" href="#">Products</a>
+             <div class="navbar-dropdown">
+             <a class="navbar-item" href="#">Product A</a>
+             <a class="navbar-item" href="#">Product B</a>
+             <a class="navbar-item" href="#">Product C</a>
+             </div>
+             </div>
+             <div class="navbar-item has-dropdown is-hoverable">
+             <a class="navbar-link" href="#">Services</a>
+             <div class="navbar-dropdown">
+             <a class="navbar-item" href="#">Service A</a>
+             <a class="navbar-item" href="#">Service B</a>
+             <a class="navbar-item" href="#">Service C</a>
+             </div>
+             </div>
+             <div class="navbar-item has-dropdown is-hoverable">
+             <a class="navbar-link" href="#">Resources</a>
+             <div class="navbar-dropdown">
+             <a class="navbar-item" href="#">Resource A</a>
+             <a class="navbar-item" href="#">Resource B</a>
+             <a class="navbar-item" href="#">Resource C</a>
+             </div>
+             </div>
+             <div class="navbar-item">
+             <span class="control">
+             <a class="button is-primary" href="#">Download</a>
+             </span>
+             </div> -->
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="xyz" data-version="5.2">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="#">Project XYZ</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#">Project XYZ</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#">Quickstart</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="index.html">Brand&#8217;s Hardware &amp; Software Requirements</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#">IDE Integration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="#liber-recusabo">Liber Recusabo</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#">Keyboard Shortcuts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#">Importing and Exporting</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Project XYZ</span>
+    <span class="version">5.2</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">Project ABC</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="#">1.1</a>
+        </li>
+        <li class="version">
+          <a href="#">1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">Project XYZ</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../6.0/index.html">6.0</a>
+        </li>
+        <li class="version is-current">
+          <a href="#">5.2</a>
+        </li>
+        <li class="version">
+          <a href="#">5.1</a>
+        </li>
+        <li class="version">
+          <a href="#">5.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Project 123</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="#">2.2</a>
+        </li>
+        <li class="version">
+          <a href="#">2.1</a>
+        </li>
+        <li class="version">
+          <a href="#">2.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main>
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li>Quickstart</li>
+    <li><a href="index.html">Brand&#8217;s Hardware &amp; Software Requirements</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">5.2</button>
+  <div class="version-menu">
+    <a class="version" href="#">6.0</a>
+    <a class="version is-current" href="#">5.2</a>
+    <a class="version" href="#">5.1</a>
+    <a class="version is-missing" href="#">5.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="http://example.com/project-xyz/blob/master/index.adoc">Edit this Page</a></div>
+  </div>
+<article class="doc">
+<h1 class="page">Hardware and Software Requirements</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><span class="image right"><img src="multirepo-ssg.svg" alt="Multirepo SSG" width="200"></span>
+Platonem complectitur mediocritatem ea eos.
+Ei nonumy deseruisse ius.
+Mel id omnes verear.
+Vis no velit audiam, sonet <a href="#dependencies">praesent</a> eum ne.
+<strong>Prompta eripuit</strong> nec ad.
+Integer diam enim, dignissim eget eros et, ultricies mattis odio.
+Vestibulum consectetur nec urna a luctus.
+Quisque pharetra tristique arcu fringilla dapibus.
+Curabitur ut massa aliquam, cursus enim et, accumsan lectus.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cu-solet"><a class="anchor" href="#cu-solet"></a>Cu solet</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Nominavi luptatum eos, an vim hinc philosophia intellegebat.
+Lorem <code>expetenda</code> pertinacia et nec, <span class="underline">wisi</span> illud <span class="line-through">sonet</span> qui ea.
+Eum an doctus <a href="#liber-recusabo">maiestatis efficiantur</a>.
+Eu mea inani iriure.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "name": "module-name",
+  "version": "10.0.1",
+  "description": "An example module to illustrate the usage of package.json",
+  "author": "Author Name &lt;author@example.com&gt;",
+  "scripts": {
+    "test": "mocha",
+    "lint": "eslint"
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example paragraph syntax</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.Optional title
+[example]
+This is an example paragraph.</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Optional title</div>
+<div class="content">
+This is an example paragraph.
+</div>
+</div>
+<div class="paragraph">
+<p>How about some code?</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">vfs
+  .src('js/vendor/*.js', { cwd: 'src', cwdbase: true, read: false })
+  .pipe(tap((file) =&gt; { <i class="conum" data-value="1"></i><b>(1)</b>
+    file.contents = browserify(file.relative, { basedir: 'src', detectGlobals: false }).bundle()
+  }))
+  .pipe(buffer()) <i class="conum" data-value="2"></i><b>(2)</b>
+  .pipe(uglify())
+  .pipe(gulp.dest('build'))</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The tap function is used to wiretap the data in the pipe.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Wrap streaming files in buffers so they can be processed by uglify.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Cum dicat <mark>putant</mark> ne.
+Est in <a href="#inline">reque</a> homero principes, meis deleniti mediocrem ad has.
+Altera atomorum his ex, has cu elitr melius propriae.
+Eos suscipit scaevola at.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>pom.xml
+src/
+  main/
+    java/
+      HelloWorld.java
+  test/
+    java/
+      HelloWorldTest.java</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Select <span class="menuseq"><b class="menu">File</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Open Project</b></span> to open the project in your IDE.
+Per ea <b class="button">Cancel</b> inimicus.
+Ferri <kbd>F11</kbd> tacimates constituam sed ex, eu mea munere vituperata <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>T</kbd></span> constituam.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Sidebar Title</div>
+<div class="paragraph">
+<p>Platonem complectitur mediocritatem ea eos.
+Ei nonumy deseruisse ius.
+Mel id omnes verear.</p>
+</div>
+<div class="paragraph">
+<p>Altera atomorum his ex, has cu elitr melius propriae.
+Eos suscipit scaevola at.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="liber-recusabo"><a class="anchor" href="#liber-recusabo"></a>Liber recusabo</h3>
+<div class="paragraph">
+<p>No sea, at invenire voluptaria mnesarchum has.
+Ex nam suas nemore dignissim, vel apeirian democritum et.
+At ornatus splendide sed, phaedrum omittantur usu an, vix an noster voluptatibus.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>potenti donec cubilia tincidunt</p>
+</li>
+<li>
+<p>etiam pulvinar inceptos velit quisque aptent himenaeos</p>
+</li>
+<li>
+<p>lacus volutpat semper porttitor aliquet ornare primis nulla enim</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Natum facilisis theophrastus an duo.
+No sea, at invenire voluptaria mnesarchum has.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ultricies sociosqu tristique integer</p>
+</li>
+<li>
+<p>lacus volutpat semper porttitor aliquet ornare primis nulla enim</p>
+</li>
+<li>
+<p>etiam pulvinar inceptos velit quisque aptent himenaeos</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Eu sed antiopam gloriatur.
+Ea mea agam graeci philosophia.</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> todo</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> done!</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Vis veri graeci legimus ad.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">sed</dt>
+<dd>
+<p>splendide sed</p>
+</dd>
+<dt class="hdlist1">mea</dt>
+<dd>
+<p>agam graeci</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>At ornatus splendide sed.</p>
+</div>
+<table id="dependencies" class="tableblock frame-all grid-all fit-content">
+<caption class="title">Library dependencies</caption>
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Library</th>
+<th class="tableblock halign-left valign-top">Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eslint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">^1.7.3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eslint-config-gulp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">^2.0.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">expect</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">^1.20.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">istanbul</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">^0.4.3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">istanbul-coveralls</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">^1.0.3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">jscs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">^2.3.5</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Cum dicat putant ne.
+Est in reque homero principes, meis deleniti mediocrem ad has.
+Altera atomorum his ex, has cu elitr melius propriae.
+Eos suscipit scaevola at.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+This oughta do it!
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Cum dicat putant ne.
+Est in reque homero principes, meis deleniti mediocrem ad has.
+Altera atomorum his ex, has cu elitr melius propriae.
+Eos suscipit scaevola at.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You&#8217;ve been down <em>this</em> road before.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Cum dicat putant ne.
+Est in reque homero principes, meis deleniti mediocrem ad has.
+Altera atomorum his ex, has cu elitr melius propriae.
+Eos suscipit scaevola at.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Watch out!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><span id="inline">I wouldn&#8217;t try that if I were you.</span></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Don&#8217;t forget this step!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Key Points to Remember</div>
+<div class="paragraph">
+<p>If you installed the CLI and the default site generator globally, you can upgrade both of them with the same command.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ npm i -g @antora/cli @antora/site-generator-default</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Nominavi luptatum eos, an vim hinc philosophia intellegebat.
+Eu mea inani iriure.</p>
+</div>
+<h2 id="voluptua-singulis" class="discrete">Voluptua singulis</h2>
+<div class="paragraph">
+<p>Cum dicat putant ne.
+Est in reque homero principes, meis deleniti mediocrem ad has.
+Ex nam suas nemore dignissim, vel apeirian democritum et.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="multirepo-ssg.svg" alt="Multirepo SSG" width="250">
+</div>
+<div class="title">Figure 1. Antora is a multi-repo documentation site generator</div>
+</div>
+<div class="paragraph">
+<p>Altera atomorum his ex, has cu elitr melius propriae.
+Eos suscipit scaevola at.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget leo nunc, nec tempus mi? Curabitur id nisl mi, ut vulputate urna. Quisque porta facilisis tortor, vitae bibendum velit fringilla vitae! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget leo nunc, nec tempus mi? Curabitur id nisl mi, ut vulputate urna. Quisque porta facilisis tortor, vitae bibendum velit fringilla vitae!</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; Famous Person. Cum dicat putant ne.<br>
+<cite>Cum dicat putant ne. <a href="https://example.com">Famous Person Website</a></cite>
+</div>
+</div>
+<div class="paragraph">
+<p>That&#8217;s all, folks!</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<script src="_/js/site.js"></script>
+<script async src="_/js/vendor/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/>
+<script>
+  docsearch({
+    // Your apiKey and indexName will be given to you once
+    // we create your config
+    appId: '45F3R2857E', // Add your own Application ID
+    apiKey: '6b1e594d7532affa1fcdc8b93a89a20f',
+    indexName: 'geodb',
+    // Replace inputSelector with a CSS selector
+    // matching your search input
+    inputSelector: '#algoliaDocsearch',
+    // Set debug to true if you want to inspect the dropdown
+    debug: false
+  });
+</script>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </body>
+</html>
