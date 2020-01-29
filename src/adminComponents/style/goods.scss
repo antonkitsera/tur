@@ -1,0 +1,442 @@
+@import "variables";
+
+@mixin ItemFlexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin ItemTitleSmall {
+    margin-bottom: 2px;
+    font-family: $font;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 25px;
+    color: $color-gray-dark-light;
+}
+
+@mixin ItemInput {
+    padding: 9px 20px 9px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 1px solid $color-blue-light;
+    font-family: $font;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 29px;
+    color: $color-black-dark;
+    background-color: $color-white-light;
+}
+
+.goods {
+    margin-left: 255px;
+    background-color: $color-white-light;
+    overflow-x: auto;
+    
+    &-headline {
+        margin-bottom: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .g {
+            &-select {
+                &-header {
+                    display: flex;
+                    align-items: center;
+
+                    &__arrow {
+                        margin-left: 30px;
+                    }
+                }
+
+                &-list {
+                    z-index: 10;
+                }
+            }
+            
+            &-title {
+                margin: 0;
+            }
+        }
+    }
+
+    &__wrapper {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: 25px;
+        grid-row-gap: 25px;
+    }
+
+    &-item {
+        border-radius: 5px;
+        box-sizing: border-box;
+        border: 1px solid $color-white-gray;
+        background-color: $color-white;
+
+        &__source {
+            position: relative;
+            height: 157px;
+        }
+
+        &__image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+
+        &__block {
+            padding: 14px 15px 13px;
+        }
+
+        &__title, &__author, &__publ, &__price {
+            margin: 0;
+            font-family: $font;
+        }
+
+        &__author, &__publ {
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 16px;
+            letter-spacing: -0.31px;
+            color: $color-black-dark;
+        }
+
+        &__title {
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 22px;
+            letter-spacing: -0.408px;
+            color: $color-black-dark;
+        }
+
+        &__author {
+            margin-bottom: 5px;
+        }
+
+        &__publ {
+            margin-bottom: 10px;
+        }
+
+        &__price {
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 16px;
+            letter-spacing: -0.31px;
+            color: $color-gray-dark-light;
+        }
+    }
+}
+
+.book {
+    padding: 60px 48px 52px;
+    border-radius: 5px;
+    background-color: $color-white;
+
+    &__title {
+        margin: 0;
+        margin-bottom: 32px;
+        font-family: $font;
+        font-weight: bold;
+        font-size: 34px;
+        line-height: 41px;
+        letter-spacing: 0.374px;
+        color: $color-black-dark;
+    }
+
+    &__subtitle {
+        margin: 0;
+        font-family: $font;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 36px;
+        color: $color-black-light;
+
+        &:nth-of-type(1) {
+            margin-bottom: 12px;
+        }
+    }
+
+    &__span {
+        @include ItemTitleSmall;
+    }
+    
+    &-label {
+        @include ItemFlexColumn;
+
+        &__input {
+            @include ItemInput;
+        }
+    }
+
+    &-cover {
+        display: flex;
+        overflow-x: auto;
+
+        &__item {
+            margin-right: 24px;
+        }
+
+        &__label {
+            margin-top: 10px;
+            display: flex;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            cursor: pointer;
+            width: 280px;
+            height: 426px;
+            border: 1px solid $color-white-gray-dark;
+            box-sizing: border-box;
+            border-radius: 5px;
+            padding: 27px 28px 16px;
+            margin-bottom: 16px;
+        }
+
+        &__image {
+            top: 0;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        &__file {
+            display: none;
+        }
+
+        &__icon {
+            width: 64px;
+            height: 56px;
+        }
+
+        &__add {
+            margin-top: 28px;
+        }
+    }
+
+    &_grid {
+        &:nth-child(1) {
+            grid-area: 1 / 1 / 2 / 3;
+        }
+    }
+
+    &__block {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        grid-column-gap: 24px;
+        grid-row-gap: 15px;
+    }
+
+    &__textarea {
+        margin-bottom: 39px;
+        resize: none;
+        width: 100%;
+        padding: 16px 23px 20px 20px;
+        min-height: 297px;
+        font-family: $font;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 29px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        color: $color-black-dark;
+        border: 1px solid $color-blue-light;
+        background-color: $color-white-dark;
+    }
+
+    &_flex {
+        padding-top: 24px;
+        display: flex;
+        justify-content: flex-end;
+        border-top: 1px solid rgba($color: $color-black-dark, $alpha: 0.1);
+    }
+
+    &__delete {
+        margin-right: 16px;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        background-color: $color-gray-light;
+    }
+
+    .g-add {
+        padding-left: 50px;
+        padding-right: 50px;
+        border-radius: 5px;
+
+        &_margin {
+            margin-right: 16px;
+        }
+    }
+
+    &-search {
+        position: relative;
+
+        &__header {
+            padding: 8px 16px 7px;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 5px;
+            box-sizing: border-box;
+            border: 1px solid $color-blue-light;
+            background-color: $color-white-dark;
+        }
+
+        &_flex {
+            display: flex;
+        }
+
+        &__button {
+            border: none;
+            padding: 0;
+            margin: 0;
+            background: none;
+            font-family: $font;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 29px;
+            color: $color-black-dark;
+
+            &[data-id="authorList"] {
+                display: flex;
+            }
+        }
+
+        &-item {
+            margin-right: 5px;
+            padding: 1px 8px;
+            display: flex;
+            align-items: center;
+            font-family: $font;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 29px;
+            border-radius: 2px;
+            color: $color-black-dark;
+            background-color: $color-gray;
+
+            &__icon {
+                margin-top: 2px;
+                margin-left: 8px;
+            }
+        }
+
+        &__search {
+            border: none;
+            background: none;
+            font-family: $font;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 29px;
+            color: $color-black-dark;
+        }
+
+        &__content {
+            z-index: 10;
+            margin-top: 8px;
+            padding-bottom: 14px;
+            position: absolute;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            border-radius: 4px;
+            box-sizing: border-box;
+            border: 1px solid $color-gray-light;
+            background-color: $color-white;
+        }
+
+        &__label {
+            margin: 0;
+            padding: 7px 16px;
+            font-family: $font;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 29px;
+            cursor: pointer;
+            color: $color-black-dark;
+
+            &:hover {
+                background-color: $color-white-dark;
+            }
+        }
+
+        &__input {
+            display: none;
+        }
+    }
+
+    &-select {
+        position: relative;
+
+        &__header {
+            padding: 8px 16px 7px;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 5px;
+            box-sizing: border-box;
+            border: 1px solid $color-blue-light;
+            background-color: $color-white-dark;
+        }
+
+        &__button {
+            border: none;
+            padding: 0;
+            margin: 0;
+            background: none;
+            font-family: $font;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 29px;
+            color: $color-black-dark;
+        }
+
+        &__search {
+            border: none;
+            background: none;
+            font-family: $font;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 29px;
+            color: $color-black-dark;
+        }
+
+        &__content {
+            z-index: 10;
+            margin-top: 8px;
+            padding-bottom: 14px;
+            position: absolute;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            border-radius: 4px;
+            box-sizing: border-box;
+            border: 1px solid $color-gray-light;
+            background-color: $color-white;
+        }
+
+        &__label {
+            margin: 0;
+            padding: 7px 16px;
+            font-family: $font;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 29px;
+            cursor: pointer;
+            color: $color-black-dark;
+
+            &:hover {
+                background-color: $color-white-dark;
+            }
+        }
+
+        &__input {
+            display: none;
+        }
+    }
+}

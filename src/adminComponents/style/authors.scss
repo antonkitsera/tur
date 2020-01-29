@@ -1,0 +1,23 @@
+@import "variables";
+
+.authors {
+    margin-left: 255px;
+    background-color: #f5f5f5;   
+
+    .g-file {
+        &__label {
+            margin: 0;
+            margin-bottom: 16px;
+            max-width: 280px;
+            padding: 98px 28px 98px;
+        }
+    }
+
+    .catalog {
+        &-add {
+            &__textarea {
+                min-height: 190px;
+            }
+        }
+    }
+}

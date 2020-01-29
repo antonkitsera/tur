@@ -1,0 +1,81 @@
+@import "variables";
+@import "global";
+
+.login {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-white;
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__logo {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 48px;
+    }
+
+    &-form {
+        display: flex;
+        flex-direction: column;
+        min-width: 376px;
+
+        &__input {
+            margin-bottom: 16px;
+            padding: 14px 15px 11px;
+            border: 1px solid $color-black-dark;
+            color: $color-gray-dark-light;
+            opacity: 0.3;
+
+            &:focus {
+                opacity: 1;
+            }
+        }
+
+        &__submit {
+            margin-bottom: 30px;
+            color: $color-white;
+            border: none;
+            border: 1px solid $color-black-dark;
+            background-color: $color-black-dark;
+
+            &:hover {
+                color: $color-black-dark;
+                background-color: $color-white;
+            }
+        }
+
+        &__input, &__submit {
+            padding-top: 14px;
+            padding-bottom: 11px;
+            font-family: $font;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 19px;
+            border-radius: 2px;
+            transition: $transition;
+        }
+    }
+    
+    &__text {
+        text-align: center;
+        font-family: Open Sans;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 16px;
+        color: rgba($color: $color-black-dark, $alpha: 0.16);
+    }
+
+    &__link {
+        color: rgba($color: $color-black-dark, $alpha: 0.16);
+        text-decoration: underline;
+
+        &:hover {
+            color: rgba($color: $color-black-dark, $alpha: 0.16);
+        }
+    }
+}

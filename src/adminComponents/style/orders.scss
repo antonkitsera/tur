@@ -1,0 +1,198 @@
+@import "variables";
+
+.orders {
+    margin-left: 255px;
+    background-color: #f5f5f5;
+
+    &__wrapper {
+        background-color: $color-white;
+    }
+
+    &-modal {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        background-color: rgba($color: $color-black-dark, $alpha: 0.7);
+
+        &__wrapper {
+            padding: 31px 35px 32px 31px;
+            background-color: $color-white;
+        }
+
+        &__head {
+            padding-bottom: 23px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid $color-gray;
+        }
+
+        &__title {
+            margin: 0;
+            font-family: $font;
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 33px;
+            color: $color-black-dark;
+        }
+
+        &__icon {
+            cursor: pointer;
+        }
+
+        &-table {
+            &__tr {
+                display: block;
+                margin-bottom: 14px;
+
+                &:first-of-type {
+                    margin-top: 17px;
+                }
+            }
+            
+            &__td {
+                font-family: $font;
+                font-weight: bold;
+                font-size: 18px;
+                line-height: 25px;
+                color: $color-black-dark;
+
+                &:nth-child(1) {
+                    vertical-align: top;
+                    padding-right: 20px;
+                }
+
+                &:nth-child(2) {
+                    padding-right: 22px;
+                }
+
+                &:nth-child(3) {
+                    vertical-align: top;
+                }
+
+                &:nth-child(4) {
+                    padding: 0 165px;
+                }
+            }
+
+            &__book {
+                width: 60px;
+                height: 90px;
+                object-fit: cover;
+            }
+
+            &__title, &__author {
+                margin: 0;
+                font-family: $font;
+                font-weight: bold;
+            }
+
+            &__title {
+                margin-bottom: 11px;
+                font-size: 18px;
+                line-height: 25px;
+                color: $color-black-dark;
+            }
+
+            &__author {
+                font-size: 16px;
+                color: $color-gray-dark;            
+            }
+        }
+
+        &__footer {
+            padding-top: 26px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            border-top: 1px solid $color-gray;
+        }
+
+        &__sum {
+            margin: 0;
+            margin-bottom: 20px;
+            font-family: $font;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 25px;
+            color: $color-black-dark;
+        }
+
+        &__close {
+            padding: 11px 51px;
+        }
+    }
+
+    &-view {
+        padding: 25px 31px 30px;
+
+        &__new, &__old {
+            padding: 6px 28px 9px;
+            font-family: $font;
+            font-weight: bold;
+            font-size: 34px;
+            line-height: 41px;
+            letter-spacing: 0.374px;
+            border-radius: 4px;
+            border: none;
+            color: $color-black-dark;
+            background-color: $color-white;
+
+            &.active {
+                color: $color-white;
+                background-color: $color-black-dark;
+            }
+        }
+
+        &__new {
+            margin-right: 4px;
+        }
+    }
+
+    &-table {
+
+        &__head {
+            border-bottom: 1px solid $color-white-gray;
+        }
+
+        &__body {}
+
+        &__tr {
+            border-bottom: 1px solid $color-white-gray;
+        }
+
+        &__th, &__td {
+            padding-top: 14px;
+            padding-bottom: 14px;
+            padding-left: 20px;
+            padding-right: 20px;
+            font-family: $font;
+            font-size: 16px;
+            line-height: 22px;
+            color: $color-black-dark;
+
+            &:first-of-type {
+                text-align: center;
+                padding-left: 31px;
+            }
+        }
+
+        &__th {
+            font-weight: bold;
+        }
+
+        &__td {
+            font-weight: 600;
+        }
+
+        &__span {
+             font-family: $font;
+             color: $color-gray;
+        }
+    }
+}
