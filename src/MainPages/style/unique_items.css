@@ -1,0 +1,283 @@
+.unique_items_page {
+    display: grid;
+    grid-template-columns: 440px 1fr;
+    padding: 32px 2%;
+}
+
+.wrapper_title_unique_item {
+    grid-column: 1/-1;
+    margin-bottom: 40px;
+}
+
+.wrapper_title_unique_item a {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #060606;
+    text-decoration: none;
+}
+
+.wrapper_title_unique_item a:after {
+    content: '>';
+    padding: 10px;
+    cursor: default;
+}
+
+.wrapper_title_unique_item a:last-child:after {
+    content: '';
+}
+
+.unique_items_page .description_wrapper {
+    margin-top: 40px;
+    grid-column: 1/-1;
+    border-bottom: 1px solid #CECECE;
+}
+
+.unique_items_page .description_wrapper .title {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #828181;
+}
+
+.unique_items_page .items_info {
+    width: 600px;
+    display: grid;
+    height: min-content;
+    grid-gap: 8px;
+}
+
+.unique_items_page .items_info .name_items {
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 42px;
+    color: #060606
+}
+
+.unique_items_page .items_info .author {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #828181;
+}
+
+.unique_items_page .items_info .items_author {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #060606;
+    padding-left: 12px;
+}
+
+.unique_items_page .start_rating .star-container svg {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.unique_items_page .description_wrapper p {
+    margin-top: 12px;
+    width: 70%;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 120%;
+    color: #000;
+}
+
+.unique_items_page .similar_items {
+    grid-column: 1/-1;
+    margin-top: 40px;
+}
+
+.unique_items_page .information_about_items {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    width: 70%;
+    grid-gap: 8px;
+    align-content: center;
+}
+
+.unique_items_page .information_about_items .title_wrapper {
+    display: flex;
+}
+
+.unique_items_page .information_about_items .title {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #828181;
+}
+
+
+.unique_items_page .information_about_items .title_wrapper div:last-child {
+    border-bottom: 1px solid #828181;
+    opacity: 0.2;
+    content: '';
+    width: 100%;
+    align-self: start;
+    margin: 17px 0 3px 12px;
+}
+
+.unique_items_page .information_about_items .desc {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #060606;
+}
+
+.unique_items_page .adding_to_cart {
+    background: #060606;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 212px;
+    height: 52px;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #fff;
+}
+
+.unique_items_page .price_wrapper {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    margin-top: 20px;
+    grid-gap: 20px;
+    width: 70%;
+}
+
+.unique_items_page .price_wrapper .price s {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #828181;
+}
+
+.unique_items_page .price_wrapper .price span {
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: bold;
+    color: #060606;
+}
+
+.unique_items_page .price_wrapper .price,
+.unique_items_page .price_wrapper .sale_wrapper {
+    display: grid;
+}
+
+.unique_items_page .price_wrapper .sale_wrapper span {
+    font-weight: bold;
+    font-size: 18px;
+    align-self: end;
+    line-height: 21px;
+    color: #060606;
+}
+
+.unique_items_page .price_wrapper .sale_wrapper span:last-child {
+    align-self: center;
+}
+
+.replies_wrapper {
+    margin-top: 20px;
+    width: 70%;
+    grid-column: 1/-1;
+}
+
+.replies_wrapper .reply_title {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #828181;
+}
+
+.replies_wrapper .every_replies {
+    margin: 20px 0;
+}
+
+.replies_wrapper .every_replies .wrapper_title_reply .time {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    color: #828181;
+    padding-left: 12px;
+}
+
+.replies_wrapper .every_replies .wrapper_title_reply .title {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000;
+}
+
+.replies_wrapper .every_replies p {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 120%;
+    margin-top: 8px;
+    color: #000000;
+}
+
+.changeRegistrationModal {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    color: #828181;
+    margin-top: 12px;
+}
+
+.changeRegistrationModal .registration {
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+.addingCommentForm {
+    display: grid;
+    grid-column: 1/-1;
+    width: 70%;
+    margin-top: 32px;
+}
+
+.addingCommentForm .title {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #060606;
+    padding-bottom: 12px;
+}
+
+.addingCommentForm textarea {
+    width: 100%;
+    height: 136px;
+    border: 1px solid #828181;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 120%;
+    min-height: 100px;
+    color: #000000;
+    padding: 4px;
+    outline: none;
+}
+
+.addingCommentForm button {
+    width: 175px;
+    height: 40px;
+    background: #060606;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    line-height: 21px;
+    color: #FFF;
+    margin-top: 20px;
+}
+
+.pagination_wrapper .title{
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #828181;
+}

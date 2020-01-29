@@ -1,0 +1,363 @@
+.wrapper_ordering_books .content_wrapper {
+    padding: 32px 2%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 32px;
+}
+
+.wrapper_ordering_books .wrapper_order {
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 54px 60px 16px 60px;
+    display: grid;
+    grid-gap: 30px;
+    height: min-content;
+}
+
+.wrapper_ordering_books .wrapper_order .every_items_in_cart {
+    display: grid;
+    grid-template-columns: 72px 200px 1fr;
+    min-height: 111px;
+    grid-gap: 24px;
+}
+
+.every_items_in_cart .price_items_wrapper,
+.wrapper_ordering_books .wrapper_order .every_items_in_cart .items_content_wrapper {
+    display: grid;
+}
+
+.empty_cart {
+    text-align: center;
+    grid-column: 1/-1;
+}
+
+.empty_cart span {
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 42px;
+    color: #000
+}
+
+.every_items_in_cart .price_items_wrapper .price {
+    justify-self: end;
+    align-self: center;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #060606
+}
+
+.wrapper_order {
+    margin-top: 60px;
+}
+
+.wrapper_order .price_wrapper {
+    display: grid;
+}
+
+.wrapper_order .price_wrapper .price {
+    justify-self: end;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #828181;
+}
+
+.form_content {
+    margin-top: 18px;
+}
+
+.form_content .section_name {
+    margin-top: 52px;
+}
+
+.form_content .section_name span {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000;
+}
+
+.wrapper_ordering_books .content_wrapper form button {
+    margin-top: 40px;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #fff;
+    background: #060606;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    width: 270px;
+    height: 52px;
+}
+
+.form_content .delivery_and_pay,
+.form_content .form_content_inputs {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.form_content .delivery_and_pay .change_delivery,
+.form_content .delivery_and_pay .every_selected,
+.form_content .form_content_inputs .every_inputs:nth-child(3),
+.form_content .form_content_inputs .every_inputs:nth-child(4),
+.form_content .form_content_inputs .every_inputs:nth-child(5) {
+    grid-column: 1/-1;
+}
+
+.form_content .every_inputs {
+    display: grid;
+    margin: 20px 0;
+}
+
+.passwordChangingWrapper .every_inputs label,
+.form_content .every_inputs label {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+}
+
+.passwordChangingWrapper .every_inputs input,
+.form_content .every_inputs input {
+    border: solid #828181;
+    background: transparent;
+    border-width: 0 0 1px 0;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 120%;
+    color: #000000;
+    padding: 4px 0;
+}
+
+.passwordChangingWrapper .every_inputs input:focus,
+.form_content .every_inputs input:focus {
+    outline: none;
+}
+
+.every_inputs .error {
+    border: solid #FF0000;
+    border-width: 0 0 1px 0;
+}
+
+
+.form_content .delivery_and_pay {
+    background: #FBFBFB;
+    border: 1px solid #D9D9D9;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 40px;
+    margin-top: 28px;
+}
+
+.form_content .delivery_and_pay .change_delivery {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 20px;
+    position: relative;
+    padding: 0 6px;
+    margin: 10px 0 0;
+}
+
+.form_content .delivery_and_pay .change_delivery label {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 120%;
+    color: #828181;
+    position: relative;
+    cursor: pointer;
+}
+
+.form_content .delivery_and_pay .change_delivery input[type='radio'] {
+    display: none;
+}
+
+.form_content .delivery_and_pay .change_delivery label:before {
+    border: 2px solid #828181;
+}
+
+.form_content .delivery_and_pay .change_delivery label:before {
+    content: " ";
+    display: inline-block;
+    position: relative;
+    top: 5px;
+    margin: 0 5px 0 -5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 11px;
+    border: 2px solid #828181;
+    background-color: transparent;
+}
+
+.form_content .delivery_and_pay .change_delivery .active_radio_btn:before {
+    border: 2px solid #000;
+}
+
+.form_content .delivery_and_pay .change_delivery .active_radio_btn {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+}
+
+.form_content .delivery_and_pay .change_delivery .active_radio_btn:after {
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 9px;
+    margin-left: -1px;
+    content: " ";
+    display: block;
+    background: #000;
+}
+
+.form_content .every_selected {
+    display: grid;
+    position: relative;
+    grid-gap: 30px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.form_content .every_selected label {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+
+}
+
+.form_content .every_selected select {
+    border: solid #828181;
+    border-width: 0 0 1px 0;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 120%;
+    color: #000000
+}
+
+.dataChangeModal .drop_down_city_option,
+.dataChangeModal .every_selected .street_select,
+.dataChangeModal .department_select,
+.form_content .drop_down_city_option,
+.form_content .every_selected .street_select,
+.form_content .department_select {
+    position: absolute;
+    z-index: 100;
+    display: grid;
+    height: auto;
+    max-height: 142px;
+    width: 100%;
+    overflow: auto;
+    top: 90%;
+    background: #fff;
+    border: 1px solid #D9D9D9;
+    box-sizing: border-box;
+    transition: .4s;
+    grid-gap: 4px;
+}
+
+.dataChangeModal .dataChange .street_select label,
+.dataChangeModal .drop_down_city_option label,
+.form_content .drop_down_city_option label,
+.form_content .every_selected .street_select label,
+.form_content .department_select label {
+    padding: 0 24px;
+    width: 100%;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 120%;
+    color: #000
+}
+
+.unActiveDropDown {
+    border: none !important;
+}
+
+.dataChangeModal .dataChange .street_select label:hover,
+.dataChangeModal .drop_down_city_option label:hover,
+.form_content .drop_down_city_option label:hover,
+.form_content .every_selected .street_select label:hover,
+.form_content .department_select label:hover {
+    background: #232323;
+    color: #fff;
+}
+
+
+.form_content .unActive_department_select,
+.form_content .every_selected .street_select input,
+.form_content .department_select .every_department input,
+.form_content .drop_down_city_option .every_city input {
+    display: none;
+}
+
+.form_content .every_selected select:focus {
+    outline: none;
+}
+
+.form_content .every_selected .every_inputs {
+    grid-column: 1/-1;
+}
+
+.form_content .courier_delivery {
+    grid-template-columns: 1fr 1fr;
+}
+
+.form_content .courier_delivery .courier_house {
+    display: grid;
+    grid-column: 1/-1;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 32px;
+}
+
+.form_content .courier_delivery .courier_house .every_inputs {
+    grid-column: 1;
+}
+
+.form_content .courier_delivery .courier_house .every_inputs:last-child {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.form_content .every_selected .street_select {
+    top: 40%
+}
+
+@media screen and (max-width: 1200px) {
+    .form_content .delivery_and_pay .change_delivery {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .wrapper_ordering_books .wrapper_order {
+        padding: 24px 20px 16px 20px;
+    }
+}
+
+@media screen and (max-width: 1055px) {
+    .wrapper_ordering_books .wrapper_order {
+        display: none;
+    }
+
+    .wrapper_ordering_books form {
+        grid-column: 1/-1;
+    }
+
+    .form_content .delivery_and_pay {
+        background: transparent;
+        border: none;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .form_content .every_selected {
+        grid-template-columns: 1fr;
+    }
+}

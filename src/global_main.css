@@ -1,0 +1,153 @@
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+span, label, input, select, h6, h5, h4, h3, h2, h1, b, button, div {
+    font-family: 'Raleway', sans-serif;
+    font-style: normal;
+}
+
+.content_wrapper {
+    margin-top: 149px;
+}
+
+.unique_author_wrapper,
+.search_items_wrapper,
+.page_404,
+.personal_account_wrapper,
+.wrapper_category_page,
+.wrapper_ordering_books,
+.static_pages,
+.author_page_wrapper,
+.publishing_page_wrapper,
+.wrapper_main_page {
+    margin-top: 149px;
+    min-height: calc(100vh - 149px - 360px);
+}
+
+.static_pages {
+    padding: 40px 120px;
+}
+
+.static_pages .title {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000;
+}
+
+.static_pages .wrapper_paragraph {
+    margin-top: 20px;
+}
+
+.static_pages .wrapper_paragraph p {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 120%;
+    color: #000000;
+}
+
+.author_page_wrapper,
+.publishing_page_wrapper {
+    padding-top: 32px;
+}
+
+.author_page_wrapper .title,
+.publishing_page_wrapper .title {
+    margin-left: 2%;
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 42px;
+    color: #000000;
+}
+
+.search_items_wrapper .select_category_wrapper {
+    border-bottom: 1px solid #CECECE;
+    margin-top: 30px;
+    padding: 0 2%;
+    display: flex;
+}
+
+.search_items_wrapper .select_category_wrapper label {
+    padding: 8px 28px;
+    margin: 0;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    cursor: pointer;
+    color: #060606;
+}
+
+.search_items_wrapper .select_category_wrapper .active_label {
+    background: #060606;
+    border-radius: 4px 4px 0 0;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    color: #FFF
+}
+
+.search_items_wrapper .select_category_wrapper input {
+    display: none;
+}
+
+
+.section_title {
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 42px;
+    color: #060606;
+}
+
+.page_404 {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+.page_404 * {
+    justify-self: center;
+}
+
+.wrapper_searching_items .map_every_items {
+    padding: 0 2%;
+}
+
+.search_items_wrapper .title_wrapper {
+    padding: 32px 2%;
+}
+
+.page_404 .desc {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000;
+    margin-top: 40px;
+}
+
+.page_404 .title {
+    text-shadow: 16px 6px 2px rgba(150, 150, 148, .5);
+    font-weight: bold;
+    font-size: 144px;
+    line-height: 169px;
+    color: #000;
+}
+
+.page_404 a {
+    width: 212px;
+    height: 52px;
+    display: grid;
+    align-content: center;
+    text-align: center;
+    padding-bottom: 2px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #fff;
+    background: #060606;
+    border-radius: 4px;
+    margin-top: 40px;
+}

@@ -1,0 +1,271 @@
+.filters_section_wrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 16px;
+    padding-bottom: 32px;
+}
+
+.another_filter_wrapper,
+.filters_section_wrapper .range_wrapper {
+    display: grid;
+    position: relative;
+}
+
+.another_filter_wrapper label,
+.filters_section_wrapper .range_wrapper label {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 140%;
+    color: #828181;
+    cursor: pointer;
+}
+
+.another_filter_wrapper .title_section span,
+.filters_section_wrapper .range_wrapper .range span {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 140%;
+    color: #828181;
+    padding-right: 22px;
+}
+
+.another_filter_wrapper .title_section,
+.filters_section_wrapper .range_wrapper .range {
+    background: #FBFBFB;
+    border: 1px solid #D9D9D9;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 7px;
+    cursor: pointer;
+    padding: 11px 16px;
+    position: relative;
+    display: grid;
+}
+
+.another_filter_wrapper .title_section img,
+.filters_section_wrapper .range_wrapper .range img {
+    position: absolute;
+    right: 20px;
+    align-self: center;
+    transition: all .4s;
+}
+
+.another_filter_wrapper .title_section .active_img,
+.filters_section_wrapper .range_wrapper .active_img {
+    filter: brightness(0.1);
+    transform: rotate(180deg);
+}
+
+.filters_section_wrapper .every_filters_modal {
+    background: #FBFBFB;
+    border: 1px solid #D9D9D9;
+    box-sizing: border-box;
+    overflow: hidden;
+    max-height: 270px;
+    position: absolute;
+    border-radius: 7px;
+    display: grid;
+    top: 80px;
+    z-index: 100;
+    width: 100%;
+    padding: 16px 16px 0 16px;
+}
+
+.filters_section_wrapper .every_filters_modal .price_range_slider {
+    display: grid;
+    position: relative;
+    grid-gap: 16px;
+}
+
+.filters_section_wrapper .price_range_slider input[type=range] {
+    position: absolute;
+    pointer-events: none;
+    outline: none;
+    bottom: 0;
+    width: 100%;
+    padding-right: 1px;
+}
+
+.filters_section_wrapper .price_range_slider input[type=range] {
+    -webkit-appearance: none;
+    background: #060606;
+    height: 2px;
+}
+
+.filters_section_wrapper .price_range_slider input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    pointer-events: all;
+    position: relative;
+    z-index: 1;
+    outline: none;
+    background-color: #000;
+}
+
+
+input[type=range]::-ms-track {
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 1px solid #000000;
+    width: 4px;
+    height: 12px;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+/* All the same stuff for Firefox && IE */
+input[type=range]::-ms-thumb,
+input[type=range]::-moz-range-thumb {
+    border: 1px solid #000;
+    height: 36px;
+    width: 16px;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.another_filter_wrapper .every_filter_blocks {
+    display: grid;
+    grid-template-columns: 1fr 20px;
+}
+
+.another_filter_wrapper .every_filter_blocks label {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    color: #828181
+}
+
+.every_filter_blocks .container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.every_filter_blocks .container input {
+    position: absolute;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.every_filter_blocks .checkMark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid #828181;
+    box-sizing: border-box;
+    border-radius: 2px;
+    background: transparent;
+    height: 15px;
+    width: 15px;
+    margin-top: 8px;
+}
+
+.every_filter_blocks .container:hover input ~ .checkMark {
+    background-color: #000;
+    transition: .4s;
+    border: none;
+}
+
+.every_filter_blocks .container input:checked ~ .checkMark {
+    background-color: #060606;
+    border: none;
+}
+
+.every_filter_blocks .checkMark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.every_filter_blocks .container input:checked ~ .checkMark:after {
+    display: block;
+}
+
+.every_filter_blocks .container .checkMark:after {
+    width: 6px;
+    left: 4px;
+    top: 2px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.css-12dqk5i, .css-1mfaru8 {
+    display: none !important;
+}
+
+.css-1py3auy .row {
+    display: grid !important;
+    grid-template-columns: 1fr;
+}
+
+.css-tuua3w .rheostat {
+    margin: 12px 0 0 0 !important;
+}
+
+.css-tuua3w .rheostat-handle {
+    background-color: #000 !important;
+    height: 4px !important;
+    width: 4px !important;
+    border-radius: 0 !important;
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    margin-top: 10px !important;
+    border: none !important;
+}
+
+.css-dnqvel::-webkit-outer-spin-button,
+.css-dnqvel::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.css-h99f8y {
+    padding: 0 0 12px !important;
+}
+
+.css-amqc5y {
+    color: #828181 !important;
+}
+
+.css-tuua3w .rheostat-horizontal {
+    margin: 0 -4px 0 6px !important;
+}
+
+.css-dnqvel {
+    color: #828181 !important;
+    background: #FFFFFF !important;
+    border: none !important;
+    border-radius: 4px !important;
+    font-family: 'Raleway', sans-serif;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    line-height: 140% !important;
+    cursor: default;
+    text-align: center;
+    -moz-appearance: textfield;
+    padding: 0 !important;
+    height: 32px !important;
+}
+
+.css-tuua3w .rheostat-progress {
+    background-color: #000 !important;
+    margin-left: -4px !important;
+}

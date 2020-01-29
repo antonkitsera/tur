@@ -1,0 +1,190 @@
+.wrapper_main_page {
+    padding: 20px 0;
+}
+
+.wrapper_main_page .info_section .info_wrapper,
+.wrapper_main_page .info_section .subscription_wrapper,
+.wrapper_main_page .wrapper_all_category,
+.wrapper_main_page .wrapper_category_section,
+.wrapper_main_page .books_for_kids,
+.wrapper_main_page .are_now_viewing,
+.popular_sections_wrapper {
+    padding: 40px 2%;
+}
+
+
+.popular_sections_wrapper .popular_sections {
+    padding: 40px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 32px;
+}
+
+.popular_sections_wrapper .popular_sections .every_pre_categories {
+    border: 2px solid #060606;
+    text-decoration: none;
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 40px;
+    display: grid;
+    align-content: center;
+    text-align: center;
+    height: 140px;
+    transition: all .5s;
+}
+
+.popular_sections_wrapper .popular_sections .every_pre_categories .title {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000;
+    transition: all .5s;
+
+}
+
+.popular_sections_wrapper .popular_sections .every_pre_categories .desc {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 140%;
+    color: #828181;
+    transition: all .5s;
+}
+
+.popular_sections_wrapper .popular_sections .every_pre_categories:hover {
+    background: #060606;
+}
+
+.popular_sections_wrapper .popular_sections .every_pre_categories:hover span {
+    color: #fff;
+}
+
+.top_news_top_section {
+    padding: 0 2%;
+}
+
+.top_news_top_section .change_section input {
+    display: none;
+}
+
+.top_news_top_section .change_section label {
+    cursor: pointer;
+    margin: 0;
+    padding: 12px 20px;
+}
+
+.change_section .active_radio {
+    background: #000;
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 42px;
+    color: #fff;
+}
+
+.change_section label {
+    font-weight: bold;
+    font-size: 36px;
+    cursor: pointer;
+    line-height: 42px;
+    color: #828181
+}
+
+.wrapper_main_page .wrapper_category_section,
+.wrapper_main_page .books_for_kids {
+    margin: 40px 0;
+}
+
+.wrapper_main_page .wrapper_category_section {
+    display: grid;
+}
+.wrapper_main_page .wrapper_category_section .all_category_main_page {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 260px);
+    grid-gap: 20px;
+}
+
+.wrapper_main_page .info_section .info_wrapper {
+    background: #232323;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 32px;
+}
+
+.wrapper_main_page .info_section .info_wrapper .every_items {
+    display: grid;
+    width: auto;
+    grid-gap: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.wrapper_main_page .info_section .info_wrapper .every_items .content_wrapper {
+    justify-self: center;
+    margin: 0;
+    display: grid;
+}
+
+.wrapper_main_page .info_section .info_wrapper .every_items img {
+    justify-self: center;
+}
+
+.wrapper_main_page .info_section .info_wrapper .every_items .content_wrapper .title {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #fff;
+}
+
+.wrapper_main_page .info_section .info_wrapper .every_items .content_wrapper .desc {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 120%;
+    color: #fff;
+    padding-top: 8px;
+}
+
+.wrapper_main_page .info_section .subscription_wrapper {
+    background: #060606;
+}
+
+.wrapper_main_page .subscription_wrapper {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    grid-gap: 30px;
+}
+
+.wrapper_main_page .subscription_wrapper .title {
+    font-weight: 900;
+    width: 60%;
+    justify-self: center;
+    font-size: 28px;
+    line-height: 42px;
+    color: #fff;
+}
+
+.wrapper_main_page .subscription_wrapper form {
+    position: relative;
+    justify-self: center;
+    width: 50%;
+}
+
+@media screen and (max-width: 767px) {
+    .wrapper_main_page .info_section .info_wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .popular_sections_wrapper .popular_sections .every_pre_categories {
+        padding: 12px;
+        display: grid;
+        overflow: hidden;
+    }
+
+    .wrapper_main_page .subscription_wrapper form,
+    .wrapper_main_page .subscription_wrapper .title {
+        width: 100%;
+    }
+
+}
