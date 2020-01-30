@@ -10,14 +10,13 @@ function SearchModal({
                          deleteSearchList, changeUniqueItems, authors,
                          quantityAuthors
                      }) {
-    console.log(quantityItems, authors, searchItemsArray);
+    console.log(quantityItems, authors);
     return (
         <div className={'search_modal_wrapper'}>
             <div className={'items_array_length'}>
                 <span>Товари ({quantityItems})</span>
             </div>
             {searchItemsArray.map(item => {
-                console.log(item);
                 return (
                     <Link to={`/item/${item.id}`}
                           onClick={() => {
@@ -29,36 +28,24 @@ function SearchModal({
                         <div className={'name_wrapper'}>
                             <div className={'author_name'}>
                                 <span className={'title'}>{item.name}</span>
-                                {item.surname !== null ?
-                                    <span className={'name'}>
-                                        {item.surname !== null ? item.surname : null}
-                                    </span>
-                                    : null}
+                                <span className={'name'}>{item.surname !== null ? item.surname: null}</span>
                             </div>
                             <div className={'items_price'}>
-                                {item.price.old !== null ?
-                                    <span className={'price'}>&#8372;{item.price.old}</span>
-                                    : null}
-                                {item.price.new !== null ?
-                                    <span className={'price'}>&#8372;{item.price.old}</span>
-                                    : null}
-                                <span className={'price'}>{item.price.new !== null ? item.price.new : null}</span>
+                                <span className={'price'}>{item.price.new !== null ? item.price.new: null}</span>
                             </div>
                         </div>
                     </Link>
                 )
             })}
             <div className={'wrapper_author_length'}>
-                <span>Автори ({authors.number_of_authors})</span>
+                <span>Автори ({authors.number_of_authors$})</span>
             </div>
             <div className={'wrapper_author_maps'}>
-                {authors.authors.map(author => {
+                {searchItemsArray.author.map(author => {
                     return (
-                        <Link to={`/author/${author.id}`}
-                              onClick={() => deleteSearchList()}
-                              className={'every_author'} key={author.id}>
+                        <div className={'every_author'} key={author.id}>
                             <span>{author.name}</span>
-                        </Link>
+                        </div>
                     )
                 })}
             </div>

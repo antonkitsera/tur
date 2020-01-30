@@ -17,6 +17,7 @@ function Header(props) {
     props.cart.forEach(item => {
         price += item.price.new * item.quantity
     });
+    console.log(props);
     return (
         <div className={'header_wrapper'}>
             <Link className={'logo_wrapper'} to={'/'}>

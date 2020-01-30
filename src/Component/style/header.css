@@ -732,10 +732,6 @@
     border: none
 }
 
-.wrapper_author_maps .every_author {
-    display: grid;
-}
-
 .wrapper_author_maps .every_author,
 .search_modal_wrapper .wrapper_author_length,
 .search_modal_wrapper .every_item,

@@ -42,7 +42,10 @@ const BookItem = props => {
             discount_price: 0
         },
         info: {
-            gender: null,
+            gender: {
+                id: null,
+                name: ""
+            },
             paper: {
                 id: null,
                 name: ""
@@ -58,6 +61,7 @@ const BookItem = props => {
             name: ""
         },
         description: "",
+        illustration: null,
         code: null
     };
 
@@ -134,11 +138,44 @@ const BookItem = props => {
         setBookItem(InitialItem);
     }
 
-    const changeFunctionSelect = info => {
-        if(info === "author") {
-            console.log("callback author")
-        } else {
-            console.log("no info")
+    const changeFunctionSelect = (subject, value) => {
+        let valueArr = value.split("/");
+
+        switch(subject) {
+            case "gender":
+                setBookItem(prevState => ({ ...prevState, info: {
+                    ...prevState.info, gender: {
+                        id: valueArr[0],
+                        name: valueArr[1]
+                    }
+                }}));
+                break;
+            case "language":
+                setBookItem(prevState => ({ ...prevState, language: {
+                    id: valueArr[0],
+                    name: valueArr[1]
+                }}))
+                break;
+            case "cover_type":
+                setBookItem(prevState => ({ ...prevState, cover_type: {
+                    id: valueArr[0],
+                    name: valueArr[1]
+                }}))
+                break;
+            case "paper":
+                setBookItem(prevState => ({ ...prevState, info: {
+                    ...prevState.info, paper: {
+                        id: valueArr[0],
+                        name: valueArr[1]
+                    }
+                }}));
+                break;
+            case "illustration":
+                
+                break;
+
+            default:
+                console.log("no info")
         }
     }
     
@@ -272,12 +309,12 @@ const BookItem = props => {
 
                 {
                 // gender
-                <BookSelect subject="gender" requestList={requestList} changeFunctionSelect={changeFunctionSelect}/>
+                <BookSelect subject="gender" title={bookItem.info.gender.name} requestList={requestList} changeFunctionSelect={changeFunctionSelect}/>
                 }
 
                 {
                 // language
-                <BookSelect subject="language" requestList={requestList} changeFunctionSelect={changeFunctionSelect}/>
+                <BookSelect subject="language" title={bookItem.language.name} requestList={requestList} changeFunctionSelect={changeFunctionSelect}/>
                 }
 
                 <div className="book-label">
@@ -287,17 +324,17 @@ const BookItem = props => {
 
                 {
                 // cover type
-                <div></div>
+                <BookSelect subject="cover_type" title={bookItem.cover_type.name} requestList={requestList} changeFunctionSelect={changeFunctionSelect}/>
                 }
 
                 {
                 // paper
-                <div></div>
+                <BookSelect subject="paper" title={bookItem.info.paper.name} requestList={requestList} changeFunctionSelect={changeFunctionSelect}/>
                 }
 
                 {
                 // illustation
-                <div></div>
+                <BookSelect subject="illustration" title={bookItem.illustration} requestList={requestList} changeFunctionSelect={changeFunctionSelect}/>
                 }
             </div>
     

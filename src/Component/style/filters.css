@@ -36,6 +36,7 @@
     box-sizing: border-box;
     overflow: hidden;
     border-radius: 7px;
+    max-width: 270px;
     cursor: pointer;
     padding: 11px 16px;
     position: relative;

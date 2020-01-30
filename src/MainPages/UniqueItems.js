@@ -8,21 +8,21 @@ import MapAdminItems from "../Component/MapAdminItems";
 import Title from "../Component/Title";
 import StarRatings from "react-star-ratings";
 import {connect} from "react-redux";
-import {changeCart, openRegistrationModal, changeUniqueItems, changePrice} from '../main-store/actions'
+import {changeCart, openRegistrationModal, changeUniqueItems} from '../main-store/actions'
 // import Pagination from "react-js-zpagination";
 import API from '../API'
 import {background_color_changing} from "../BackgroundKids";
-import AdminItem from "../Component/AdminItem";
-import photo from "../image/photo.png";
 
 const getInfoAboutBook = (loading, title, info) => {
-    return <>
-        <div className={'title_wrapper'}>
-            <span className={'title'}>{title}</span>
-            <div/>
-        </div>
-        <span className={'desc'}>{info}</span>
-    </>
+    return loading && info !== null
+        ? <>
+            <div className={'title_wrapper'}>
+                <span className={'title'}>{title}</span>
+                <div/>
+            </div>
+            <span className={'desc'}>{info}</span>
+        </>
+        : null
 };
 
 class UniqueItems extends React.Component {
@@ -32,27 +32,22 @@ class UniqueItems extends React.Component {
         comment: '',
         loading: false,
         activePage: this.props.active_unique_items,
-        backgroundColor: null,
+        similar_items: null,
+        backgroundColor: null
     };
 
     componentDidMount() {
         let currentUrl = this.getCurrentUrl();
         this.props.changeUniqueItems(currentUrl);
-        this.getUser(currentUrl)
-    }
-
-    getUser = currentUrl => {
         API.get(`/book?id=${Number(currentUrl)}`)
-            .then(res => {
-                this.setState({
-                    item: res.data.book,
-                    loading: true,
-                    similar_items: res.data.related_books
-                }, () => {
-                    this.changeColorForKids(this.state.item.category.id)
-                })
-            });
-    };
+            .then(res => this.setState({
+                item: res.data.book,
+                loading: true,
+                similar_items: res.data.related_books
+            }, () => {
+                this.changeColorForKids(this.state.item.category.id)
+            }));
+    }
 
     changingColor(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -66,6 +61,13 @@ class UniqueItems extends React.Component {
             });
         } else this.setState({backgroundColor: null})
     };
+
+    componentDidUpdate(prevProps, prevState) {
+        let currentUrl = this.getCurrentUrl();
+        if (prevProps.active_unique_items !== currentUrl) {
+            this.props.changeUniqueItems(currentUrl);
+        }
+    }
 
     getCurrentUrl() {
         let url = window.location.href;
@@ -89,15 +91,8 @@ class UniqueItems extends React.Component {
         this.setState({activePage: pageNumber});
     }
 
-    handleChangePage = () => {
-        let currentUrl = this.getCurrentUrl();
-        this.props.changeUniqueItems(currentUrl);
-        this.getUser(currentUrl);
-    };
-
     render() {
         const {item, loading, comment, similar_items, backgroundColor} = this.state;
-        let illustration = loading && item.illustration ? "Ні" : "Так";
         return (
             <div className={'wrapper_category_page unique_items_page'}
                  style={{backgroundColor: backgroundColor}}>
@@ -105,7 +100,7 @@ class UniqueItems extends React.Component {
                     {loading ?
                         <>
                             <Link to={`/category/${item.category.id}`}>{item.category.name}</Link>
-                            <Link to={`/category/${item.category.id}/pre_category/${item.subcategory.id}`}>{item.subcategory.name}</Link>
+                            <Link to={`/category/${item.subcategory.id}/pre_category/${item.subcategory.id}`}>{item.subcategory.name}</Link>
                         </>
                         : null
                     }
@@ -137,12 +132,9 @@ class UniqueItems extends React.Component {
                         {loading ? getInfoAboutBook(loading, 'Видавництво:', item.ph.name) : null}
                         {loading ? getInfoAboutBook(loading, 'Мова:', item.language.name) : null}
                         {loading ? getInfoAboutBook(loading, 'Рік:', item.year) : null}
-                        {loading && item.cover_type ? getInfoAboutBook(loading, 'Тип\xa0обкладинки:', item.cover_type.name) : null}
+                        {loading ? getInfoAboutBook(loading, 'Тип\xa0обкладинки:', item.cover_type.name) : null}
                         {loading && item.info.paper !== null
                             ? getInfoAboutBook(loading, 'Папір:', item.info.paper.name)
-                            : null}
-                        {loading && item.illustration !== null
-                            ? getInfoAboutBook(loading, "Ілюстрації: ", illustration)
                             : null}
                         {loading ?
                             getInfoAboutBook(loading, 'Код\xa0товару:', item.code)
@@ -211,59 +203,7 @@ class UniqueItems extends React.Component {
                 {similar_items !== null
                     ? <div className={'similar_items'}>
                         <Title title={'Схожі товари'}/>
-                        <div className={'map_every_items'}>
-                            {similar_items.map(item => {
-                                return (
-                                    <div className={'every_items'} onClick={this.handleChangePage} key={item.id}>
-                                        <Link to={`/item/${item.id}`}
-                                              className={'wrapper_image'}>
-                                            <div className={item.unique_status === 1 ?
-                                                'unique_status unique_status_top' : item.unique_status === 2 ?
-                                                    'unique_status_sale unique_status' :
-                                                    item.unique_status === 3 ? 'unique_status unique_status_new'
-                                                        : null}>
-                                                <span>{item.unique_status === 1 ?
-                                                    'TOP' : item.unique_status === 2 ?
-                                                        'SALE' :
-                                                        item.unique_status === 3 ? 'NEW'
-                                                            : null}</span>
-                                            </div>
-                                            <img src={photo} alt={'book_image'}/>
-                                        </Link>
-                                        <div className={'item_content_wrapper'}>
-                                            <Link to={`/item/${item.id}`}
-                                                  className={'title'}>{item.name}</Link>
-                                            <span className={'desc'}>Дейл Карнегі</span>
-                                            <StarRatings
-                                                rating={item.id}
-                                                starRatedColor="#E9C715"
-                                                numberOfStars={5}
-                                                name='rating'
-                                            />
-                                            <div className={'wrapper_button_price'}>
-                                                <button className={'buy'} onClick={() => {
-                                                    if (localStorage.getItem('cart') !== null) {
-                                                        changeCart(item);
-                                                        changePrice(item);
-                                                    } else {
-                                                        changeCart(item);
-                                                        changePrice(item);
-                                                    }
-                                                }}>В корзину
-                                                </button>
-                                                <div className={'price'}>
-                                                    {item.price.old !== null
-                                                        ? <s>&#8372;{item.price.old}</s>
-                                                        : null
-                                                    }
-                                                    <span>&#8372;{item.price.new}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )
-                            })}
-                        </div>
+                        <MapAdminItems items={similar_items}/>
                     </div>
                     : null}
             </div>

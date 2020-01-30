@@ -28,7 +28,6 @@ export default class CategoryMain extends React.Component {
     };
 
     changeRangeValue = val => {
-        console.log(val);
         if (val.start > val.end) {
             this.setState({
                 min_price_range: 5000,
@@ -159,7 +158,7 @@ export default class CategoryMain extends React.Component {
                     activePreCategory: Number(pre_category),
                     activeCategory: Number(category)
                 }, () => {
-                    this.changeColorForKids();
+                    this.changeColorForKids()
                     API.get(`/full-search-book?subcategory=${pre_category}`)
                         .then(res => {
                             console.log(res);
@@ -206,10 +205,6 @@ export default class CategoryMain extends React.Component {
         }
     }
 
-    handleChangeContext = (e, context) => {
-        console.log(e, context)
-    };
-
     render() {
         const {
             activeCategory, activePreCategory, backgroundColor,
@@ -218,7 +213,7 @@ export default class CategoryMain extends React.Component {
             dataLanguageArray, dataCoverArray, pre_category_name,
             pre_category
         } = this.state;
-        console.log(activeCategory, activePreCategory);
+        console.log(this.state);
         return (
             <div className={'wrapper_category_page'}
                  style={{background: backgroundColor}}>
@@ -257,7 +252,7 @@ export default class CategoryMain extends React.Component {
                         ? <Title title={'Популярне в категорії'}/>
                         : null}
                 </div>
-                {items
+                {items !== null
                     ? <MapAdminItems items={items}/>
                     : null}
             </div>

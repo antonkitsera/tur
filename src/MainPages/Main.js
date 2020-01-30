@@ -77,13 +77,14 @@ export default class Main extends React.Component {
         API.get(`/sp-categories?id=${this.state.radio_value}`)
             .then(res => this.setState({
                 sp_categories_items: res.data.books
-            }));
-        // API.get('/watching')
-        //     .then(res => {
-        //         this.setState({
-        //             items_watching: res.data.categories
-        //         })
-        //     });
+            }))
+        API.get('/watching')
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    items_watching: res.data.categories
+                })
+            });
     }
 
     changingColor(min, max) {
@@ -96,7 +97,7 @@ export default class Main extends React.Component {
             categories, popular_pre_categories, sp_categories, category,
             random_child_items, items_watching
         } = this.state;
-        console.log(random_child_items);
+        console.log(items_watching);
         return (
             <div className={'wrapper_main_page'}>
                 {categories ?
