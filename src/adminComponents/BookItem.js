@@ -28,7 +28,10 @@ const BookItem = props => {
         ],
         name: "",
         author: [],
-        ph: {},
+        ph: {
+            id: null,
+            name: ""
+        },
         category: {
             id: null,
             name: ""
@@ -62,6 +65,7 @@ const BookItem = props => {
         },
         description: "",
         illustration: null,
+        illustrationText: "",
         code: null
     };
 
@@ -142,6 +146,12 @@ const BookItem = props => {
         let valueArr = value.split("/");
 
         switch(subject) {
+            case "category":
+                setBookItem(prevState => ({ ...prevState, category: {
+                    id: valueArr[0],
+                    name: valueArr[1]
+                }}));
+                break;
             case "gender":
                 setBookItem(prevState => ({ ...prevState, info: {
                     ...prevState.info, gender: {
@@ -171,7 +181,7 @@ const BookItem = props => {
                 }}));
                 break;
             case "illustration":
-                
+                setBookItem(prevState => ({ ...prevState, illustration: valueArr[1] === "З ілюстраціями" ? true : valueArr[1] === "Без ілюстрацій" ? false : null, illustrationText: valueArr[1]}))
                 break;
 
             default:
@@ -211,86 +221,23 @@ const BookItem = props => {
 
                 {
                 // author 
-                <div className="book-search">
-                    <span className="book__span">Автор</span>
-
-                    <div data-id="authorList" className="book-search__header" onClick={handleRequestList}>
-                        <div className="book-search_flex">
-                            <button data-id="authorList"  className="book-search__button" onClick={handleRequestListHeader}> 
-                                <span className="book-search-item">Дж. К. Роулінг <img className="book-search-item__icon" src={BookDeleteIcon} alt=""/></span>
-                            </button>
-
-                            <input className="book-search__search" type="text" placeholder={bookItem.author.length > 0 ? "" : "Введіть автора"}/>
-                        </div>
-
-                        <img className="book-search__arrow" src={IconArrowDown} alt=""/>
-                    </div>
-
-                    {requestList.authorList ? <div className="book-search__content">
-                        {categoriesData.map(category =>    
-                            <label className="book-search__label" key={category.id}>
-                                <input className="book-search__input" type="radio" name="category" value={category.name}/>
-
-                                {category.name}
-                            </label>
-                        )}
-                    </div> : null}
-                </div>
+                <BookSelect subject="author" title={bookItem.category.name} requestList={requestList} changeFunctionSelect={changeFunctionSelect}/>
                 }
 
                 {
                 // ph
-                <div className="book-select">
-                    <span className="book__span">Видавництво</span>
-
-                    <div className="book-select-header">
-
-                    </div>
-
-                    <div></div>
-                </div>
+                <BookSelect subject="ph" title={bookItem.ph.name} requestList={requestList} changeFunctionSelect={changeFunctionSelect}/>
                 }
 
-                <div className="book-select">
-                    <span className="book__span">Категорія</span>
+                {
+                // category
+                <BookSelect subject="category" title={bookItem.category.name} requestList={requestList} changeFunctionSelect={changeFunctionSelect}/>
+                }
 
-                    <div data-id="categoryList" className="book-select__header" onClick={handleRequestList}>
-                        <button data-id="categoryList"  className="book-select__button" onClick={handleRequestListHeader}>    {bookItem.category.name ? bookItem.category.name : "Виберіть категорію"}
-                        </button>
-
-                        <img className="book-select__arrow" src={IconArrowDown} alt=""/>
-                    </div>
-
-                    {requestList.categoryList ? <div className="book-select__content">
-                        {categoriesData.map(category =>    
-                            <label className="book-select__label" key={category.id}>
-                                <input className="book-select__input" type="radio" name="category" value={category.name}/>
-
-                                {category.name}
-                            </label>
-                        )}
-                    </div> : null}
-                </div>
-
-                <div className="book-select">
-                    <span className="book__span">Підкатегорія</span>
-
-                    <div data-id="subcategoryList" className="book-select__header" onClick={handleRequestList}>
-                        <button data-id="subcategoryList"  className="book-select__button">{bookItem.subcategory.name ? bookItem.subcategory.name : "Виберіть підкатегорію"}</button>
-
-                        <img className="book-select__arrow" src={IconArrowDown} alt=""/>
-                    </div>
-
-                    {requestList.subcategoryList ? <div className="book-select__content">
-                        {categoriesData.map(category =>    
-                            <label className="book-select__label" key={category.id}>
-                                <input className="book-select__input" type="radio" name="category" value={category.name}/>
-
-                                {category.name}
-                            </label>
-                        )}
-                    </div> : null}
-                </div>
+                {
+                // subcategory
+                <BookSelect subject="subcategory" title={bookItem.subcategory.name} requestList={requestList} changeFunctionSelect={changeFunctionSelect}/>
+                }
 
                 <label className="book-label">
                     <h3 className="book__subtitle">Попередня ціна, грн</h3>
@@ -334,7 +281,7 @@ const BookItem = props => {
 
                 {
                 // illustation
-                <BookSelect subject="illustration" title={bookItem.illustration} requestList={requestList} changeFunctionSelect={changeFunctionSelect}/>
+                <BookSelect subject="illustration" title={bookItem.illustrationText} requestList={requestList} changeFunctionSelect={changeFunctionSelect}/>
                 }
             </div>
     

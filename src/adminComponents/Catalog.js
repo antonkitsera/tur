@@ -78,7 +78,7 @@ const Catalog = (props) => {
                 imageBase64.push(dataUrl);
 
                 setCatalogItem({
-                    id: res.data.id,
+                    id: itemId,
                     name: res.data.name,
                     description: res.data.description,
                     path: `${imageBase64[0]}`
@@ -186,7 +186,7 @@ const Catalog = (props) => {
 
     const submitEdit = e => {
         e.preventDefault();
-        if (!catalogItem.name || !catalogItem.description || !catalogItem.path) return;
+        if (!catalogItem.id || !catalogItem.name || !catalogItem.description || !catalogItem.path) return;
 
         API.patch(`/admin/${subjectAuthors ? 'author' : subjectPublishments ? 'ph' : ''}`, {id: catalogItem.id, name: catalogItem.name, description: catalogItem.description, data: catalogItem.path})
         .then(res => {

@@ -16,7 +16,71 @@ import RequestsIcon from "../assets/sidenav-icon-requests.svg"
 
 import ExitIcon from "../assets/sidenav-icon-exit.svg"
 
-const Sidenav = () => (
+const Sidenav = () => {
+    const navObj = [
+        {
+            id: 1,
+            name: "Товари",
+            link: "/admin/goods/all",
+            icon: ItemsIcon
+        },
+        {
+            id: 2,
+            name: "Банери",
+            link: "/admin/banners",
+            icon: AdvIcon
+        },
+        {
+            id: 3,
+            name: "Автори",
+            link: "/admin/authors",
+            icon: AuthorsIcon
+        },
+        {
+            id: 4,
+            name: "Видавництва",
+            link: "/admin/publishments",
+            icon: PublIcon
+        },
+        {
+            id: 5,
+            name: "Категорії",
+            link: "/admin/categories/1",
+            icon: CategIcon
+        },
+        {
+            id: 6,
+            name: "Замовлення",
+            link: "/admin/orders",
+            icon: OrdersIcon
+        },
+        {
+            id: 7,
+            name: "Знижки",
+            link: "/admin/sales",
+            icon: SalesIcon
+        },
+        {
+            id: 8,
+            name: "Статистика",
+            link: "/admin/stats",
+            icon: StatsIcon
+        },
+        {
+            id: 9,
+            name: "Користувачі",
+            link: "/admin/users",
+            icon: UsersIcon
+        },
+        {
+            id: 10,
+            name: "Заявки",
+            link: "/admin/requests",
+            icon: RequestsIcon
+        },
+    ]
+
+    return(
     <section className="sidenav">
         <div className="sidenav__wrapper">
             <div className="sidenav-logo">
@@ -24,75 +88,14 @@ const Sidenav = () => (
             </div>
 
             <ul className="sidenav-list">
-                <li className="sidenav-list__item">
-                    <NavLink className="sidenav-list__link" activeClassName="active" to="/admin/goods/all">
-                        <img className="sidenav-list__icon" src={ItemsIcon} alt="Товари"/>
-                        Товари
-                    </NavLink>
-                </li>
-
-                <li className="sidenav-list__item">
-                    <NavLink className="sidenav-list__link" activeClassName="active" to="/admin/banners">
-                        <img className="sidenav-list__icon" src={AdvIcon} alt="Банери"/>
-                        Банери
-                    </NavLink>
-                </li>
-
-                <li className="sidenav-list__item">
-                    <NavLink className="sidenav-list__link" activeClassName="active" to="/admin/authors">
-                        <img className="sidenav-list__icon" src={AuthorsIcon} alt="Автори"/>
-                        Автори
-                    </NavLink>
-                </li>
-
-                <li className="sidenav-list__item">
-                    <NavLink className="sidenav-list__link" activeClassName="active" to="/admin/publishments">
-                        <img className="sidenav-list__icon" src={PublIcon} alt="Видавництва"/>
-                        Видавництва
-                    </NavLink>
-                </li>
-
-                <li className="sidenav-list__item">
-                    <NavLink className="sidenav-list__link" activeClassName="active" to="/admin/categories/1">
-                        <img className="sidenav-list__icon" src={CategIcon} alt="Категорії"/>
-                        Категорії
-                    </NavLink>
-                </li>
-
-                <li className="sidenav-list__item">
-                    <NavLink className="sidenav-list__link" activeClassName="active" to="/admin/orders">
-                        <img className="sidenav-list__icon" src={OrdersIcon} alt="Замовлення"/>
-                        Замовлення
-                    </NavLink>
-                </li>
-
-                <li className="sidenav-list__item">
-                    <NavLink className="sidenav-list__link" activeClassName="active" to="/admin/sales">
-                        <img className="sidenav-list__icon" src={SalesIcon} alt="Знижки"/>
-                        Знижки
-                    </NavLink>
-                </li>
-
-                <li className="sidenav-list__item">
-                    <NavLink className="sidenav-list__link" activeClassName="active" to="/admin/stats">
-                        <img className="sidenav-list__icon" src={StatsIcon} alt="Статистика"/>
-                        Статистика
-                    </NavLink>
-                </li>
-
-                <li className="sidenav-list__item">
-                    <NavLink className="sidenav-list__link" activeClassName="active" to="/admin/users">
-                        <img className="sidenav-list__icon" src={UsersIcon} alt="Користувачі"/>
-                        Користувачі
-                    </NavLink>
-                </li>
-
-                <li className="sidenav-list__item">
-                    <NavLink className="sidenav-list__link" activeClassName="active" to="/admin/requests">
-                        <img className="sidenav-list__icon" src={RequestsIcon} alt="Заявки"/>
-                        Заявки
-                    </NavLink>
-                </li>
+                {navObj.map(item =>
+                    <li className="sidenav-list__item" key={item.id}>
+                        <NavLink className="sidenav-list__link" activeClassName="active" to={item.link}>
+                            <img className="sidenav-list__icon" src={item.icon} alt={item.name}/>
+                            {item.name}
+                        </NavLink>
+                    </li>
+                )}
             </ul>
         </div>
 
@@ -101,6 +104,6 @@ const Sidenav = () => (
             Вихід
         </a>
     </section>
-);
+)};
 
 export default Sidenav;

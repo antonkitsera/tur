@@ -290,12 +290,14 @@
 
         &_flex {
             display: flex;
+            width: 100%;
         }
 
         &__button {
             border: none;
             padding: 0;
             margin: 0;
+            min-width: fit-content;
             background: none;
             font-family: $font;
             font-weight: normal;
@@ -328,6 +330,8 @@
         }
 
         &__search {
+            width: 100%;
+            display: flex;
             border: none;
             background: none;
             font-family: $font;

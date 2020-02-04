@@ -224,6 +224,9 @@ const CategoriesPage = ({ match }) => {
                 setSubcategoryItem(InitialItem);
                 setCategoriesData(res.data.categories);
             })
+
+            setEditMode(false);
+            setAddMode(true);
         })
     }
 
