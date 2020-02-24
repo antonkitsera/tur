@@ -6,7 +6,7 @@ import {Provider} from 'react-redux'
 import {applyMiddleware, createStore} from "redux";
 import combine from "./main-store/combine";
 import logger from 'redux-logger'
-import thunk  from 'redux-thunk'
+import thunk from 'redux-thunk'
 
 
 const store = createStore(combine, applyMiddleware(thunk, logger));

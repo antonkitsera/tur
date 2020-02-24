@@ -51,29 +51,29 @@ export default function MainFilters(props) {
                     : null
                 }
             </div>
-            {props.dataPublishingArray !== null ?
+            {props.dataPublishingArray ?
                 <AnotherFilterElement title={'Видавництво'}
                                       nameSwitch={'publishing'}
                                       addingToActiveArray={props.addingToActiveArray}
                                       dataArray={props.dataPublishingArray}/>
                 : null}
-            {props.dataAuthorArray !== null ?
+            {props.dataAuthorArray ?
                 <AnotherFilterElement title={'Автор'}
                                       addingToActiveArray={props.addingToActiveArray}
                                       nameSwitch={'author'}
                                       dataArray={props.dataAuthorArray}/>
                 : null}
-            {props.dataLanguageArray !== null ?
+            {props.dataLanguageArray ?
                 <AnotherFilterElement title={'Мова'}
                                       nameSwitch={'language'}
                                       addingToActiveArray={props.addingToActiveArray}
                                       dataArray={props.dataLanguageArray}/>
                 : null}
-            {props.dataCoverArray !== null
-                ? <AnotherFilterElement title={'Обкладинка'}
-                                        nameSwitch={'cover'}
-                                        addingToActiveArray={props.addingToActiveArray}
-                                        dataArray={props.dataCoverArray}/>
+            {props.dataCoverArray ?
+                <AnotherFilterElement title={'Обкладинка'}
+                                      nameSwitch={'cover'}
+                                      addingToActiveArray={props.addingToActiveArray}
+                                      dataArray={props.dataCoverArray}/>
                 : null}
         </div>
     )

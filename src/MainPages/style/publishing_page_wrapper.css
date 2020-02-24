@@ -97,6 +97,7 @@
     line-height: 140%;
     color: #000;
     width: 80%;
+    margin-left: 42px;
 }
 
 
@@ -111,4 +112,22 @@
 
 .unique_author_wrapper .filters_section_wrapper {
     grid-template-columns: repeat(4, 1fr);
+}
+
+@media screen and (max-width: 800px) {
+    .publishing_page_wrapper .every_word_wrapper .publishing_content_wrapper {
+        grid-template-rows: repeat(5, 1fr);
+        grid-template-columns: none;
+    }
+}
+@media screen and (max-width: 600px) {
+    .unique_author_wrapper .section_links {
+        display: grid;
+    }
+    .unique_author_wrapper .unique_author_content {
+        display: block;
+    }
+    .unique_author_wrapper .filters_section_wrapper {
+        grid-template-columns: none;
+    }
 }

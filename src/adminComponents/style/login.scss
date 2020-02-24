@@ -31,6 +31,10 @@
             color: $color-gray-dark-light;
             opacity: 0.3;
 
+            &_active {
+                opacity: 1;
+            }
+
             &:focus {
                 opacity: 1;
             }

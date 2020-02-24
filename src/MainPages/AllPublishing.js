@@ -16,10 +16,14 @@ export default class AllPublishing extends React.Component {
         }, () => {
             if (currentUrl === 'author') {
                 API.get('/authors')
-                    .then(res => this.setState({dataArray: res.data}))
+                    .then(res => this.setState({
+                        dataArray: res.data,
+                    }))
             } else {
                 API.get('/phs')
-                    .then(res => this.setState({dataArray: res.data}))
+                    .then(res => this.setState({
+                        dataArray: res.data,
+                    }))
             }
         });
     };
@@ -43,9 +47,9 @@ export default class AllPublishing extends React.Component {
     }
 
     render() {
-        const {currentID, dataArray} = this.state;
+        const {dataArray, currentID} = this.state;
         let count = 1;
-        console.log(dataArray);
+        console.log(currentID);
         return (
             <div className={'publishing_page_wrapper'}>
                 <div className={'title_section'}>
@@ -57,7 +61,6 @@ export default class AllPublishing extends React.Component {
                     {dataArray !== null
                         ? Object.values(dataArray || {}).map(item => {
                             return Object.keys(item || {}).map((keys, index) => {
-                                console.log(item[keys], item, keys);
                                 return item[keys].length > 0 && index === 27
                                     ? <a href={`#${keys}`} key={keys} className={'alphabet_header'}>
                                         <br/>
@@ -88,7 +91,7 @@ export default class AllPublishing extends React.Component {
                                         </ScrollableAnchor>
                                         <div className={'publishing_content_wrapper'}>
                                             {item[keys].map(elem => {
-                                                return <Link to={`/author/${elem.id}`} key={elem.id}>
+                                                return <Link to={`/${currentID}/${elem.id}`} key={elem.id}>
                                                     {elem.name}
                                                 </Link>
                                             })}

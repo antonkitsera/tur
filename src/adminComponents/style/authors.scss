@@ -2,7 +2,8 @@
 
 .authors {
     margin-left: 255px;
-    background-color: #f5f5f5;   
+    background-color: #f5f5f5;
+    overflow: auto;   
 
     .g-file {
         &__label {

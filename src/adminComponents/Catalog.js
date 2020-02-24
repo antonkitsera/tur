@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import API from "../API";
+import API from "../adminAPI";
 
 import UploadIcon from "../assets/g-icon-upload.svg"
 import AddIcon from "../assets/g-icon-add.svg";
@@ -34,7 +34,7 @@ const Catalog = (props) => {
 
         API.get(`/admin/${subjectAuthors ? 'author' : subjectPublishments ? 'ph' : ''}`)
         .then(res => {
-            console.log(res);
+            
 
             setCatalogData(res.data);
         })
@@ -50,41 +50,49 @@ const Catalog = (props) => {
     }
 
     const handleEditMode = itemId => {
-        console.log(itemId)
 
         API.get(`/admin/${subjectAuthors ? 'author' : subjectPublishments ? 'ph' : ''}`, { params: { id: itemId }})
         .then(res => {
-            console.log(res);
+            
 
-            let toDataURL = (url, callback) => {
-                if(res.data.path) {
-                    let xhr = new XMLHttpRequest();
-                    xhr.onload = () => {
-                        let reader = new FileReader();
-                        reader.onloadend = () => {
-                        callback(reader.result);
-                        }
-                        reader.readAsDataURL(xhr.response);
-                    };
-                    xhr.open('GET', url);
-                    xhr.responseType = 'blob';
-                    xhr.send();
+            if(res.data.path) {
+                let toDataURL = (url, callback) => {
+                    if(res.data.path) {
+                        let xhr = new XMLHttpRequest();
+                        xhr.onload = () => {
+                            let reader = new FileReader();
+                            reader.onloadend = () => {
+                            callback(reader.result);
+                            }
+                            reader.readAsDataURL(xhr.response);
+                        };
+                        xhr.open('GET', url);
+                        xhr.responseType = 'blob';
+                        xhr.send();
+                    }
                 }
-            }
-
-            let imageBase64 = [];
-
-            toDataURL(`${process.env.REACT_APP_API_URL}/${res.data.path}`, (dataUrl) => {
-                imageBase64.push(dataUrl);
-
+    
+                let imageBase64 = [];
+    
+                toDataURL(`${process.env.REACT_APP_API_URL}/${res.data.path}`, (dataUrl) => {
+                    imageBase64.push(dataUrl);
+    
+                    setCatalogItem({
+                        id: itemId,
+                        name: res.data.name,
+                        description: res.data.description,
+                        path: `${imageBase64[0]}`
+                    })
+    
+                })
+            } else {
                 setCatalogItem({
                     id: itemId,
                     name: res.data.name,
                     description: res.data.description,
-                    path: `${imageBase64[0]}`
+                    path: ""
                 })
-
-            })
+            }
         })
 
         setEditMode(!editMode);
@@ -127,15 +135,13 @@ const Catalog = (props) => {
 
     const handleDelete = () => {
 
-        console.log(catalogItem.id);
-
         API.delete(`/admin/${subjectAuthors ? 'author' : subjectPublishments ? 'ph' : ''}`, { params: {id: catalogItem.id}})
         .then(res => {
-            console.log(res);
+            
 
             API.get(`/admin/${subjectAuthors ? 'author' : subjectPublishments ? 'ph' : ''}`)
             .then(res => {
-                console.log(res);
+                
     
                 setCatalogItem(InitialItem);
                 handleEditMode();
@@ -154,27 +160,29 @@ const Catalog = (props) => {
             API.get(`/admin/${subjectAuthors ? 'author' : subjectPublishments ? 'ph' : ''}`, { params: {search_admin: e.target.value}})
             .then(res => {
                 setCatalogSearchData(subjectAuthors ? res.data.Authors : subjectPublishments ? res.data.PH : null);
-                console.log(res.data)
             })
         } else {
             setCatalogSearchData([])
         }
     }
 
-    const submitAdd = e => {
+    const submitAdd = (e, type) => {
         e.preventDefault();
-        if (!catalogItem.name || !catalogItem.description || !catalogItem.path) return;
-
-
-        console.log({name: catalogItem.name, description: catalogItem.description, path: catalogItem.path})
+        if (!catalogItem.name) return;
 
         API.post(`/admin/${subjectAuthors ? 'author' : subjectPublishments ? 'ph' : ''}`, {name: catalogItem.name, description: catalogItem.description, data: catalogItem.path})
         .then(res => {
-            console.log(res);
+
+            if(type === "view") {
+                const url = `../../${subjectAuthors ? 'author' : subjectPublishments ? 'publishing' : ''}/${+res.data}`;
+                window.open(url, '_blank');
+            }
+
+            
 
             API.get(`/admin/${subjectAuthors ? 'author' : subjectPublishments ? 'ph' : ''}`)
             .then(res => {
-                console.log(res);
+                
     
                 setCatalogData(res.data);
             })
@@ -184,19 +192,24 @@ const Catalog = (props) => {
         handleAddMode();
     }
 
-    const submitEdit = e => {
+    const submitEdit = (e, type) => {
         e.preventDefault();
-        if (!catalogItem.id || !catalogItem.name || !catalogItem.description || !catalogItem.path) return;
+        if (!catalogItem.id || !catalogItem.name) return;
 
         API.patch(`/admin/${subjectAuthors ? 'author' : subjectPublishments ? 'ph' : ''}`, {id: catalogItem.id, name: catalogItem.name, description: catalogItem.description, data: catalogItem.path})
         .then(res => {
-            console.log(res);
+            
+            
+            if(type === "view") {
+                const url = `../../${subjectAuthors ? 'author' : subjectPublishments ? 'publishing' : ''}/${+res.data}`;
+                window.open(url, '_blank');
+            }
 
             editMode ? setImageChanged(true) : setImageChanged(false);
 
             API.get(`/admin/${subjectAuthors ? 'author' : subjectPublishments ? 'ph' : ''}`)
             .then(res => {
-                console.log(res);
+                
     
                 setCatalogData(res.data);
             })
@@ -205,6 +218,9 @@ const Catalog = (props) => {
         setCatalogItem(InitialItem);
         handleEditMode();
     }
+
+    const ukrReg = /([А-ЩЬЮЯҐЄІЇ])/;
+    const engReg = /([A-Z])|#/;
 
     return (
         <div className="catalog">
@@ -237,7 +253,12 @@ const Catalog = (props) => {
                             <img className="catalog-add__delete_svg" src={DeleteIcon} alt="Видалити"/>
                         </button> : null}
                         <button type="button" className="catalog-add__button" onClick={handleCancel}>Скасувати</button>
-                        <button className="catalog-add__button" type="submit">Зберегти</button>
+                        <button className="catalog-add__button" type="submit" onClick={(e) => {
+                            addMode ? submitAdd(e, "no") : submitEdit(e, "no");
+                        }}>Зберегти</button>
+                        <button className="g-add" onClick={(e) => {
+                            addMode ? submitAdd(e, "view") : submitEdit(e, "view");
+                        }}>Зберегти та переглянути</button>
                     </div>
                 </form>
             </div> 
@@ -267,7 +288,15 @@ const Catalog = (props) => {
                 <div className="catalog-char">
                     <ul className="catalog-char__list">
                         {Object.entries(catalogData).map(arr =>
-                            arr[1].length > 0 ? (<li className="catalog-char__item" key={arr[0]} onClick={() => scrollToElem(arr[0])}>
+                            arr[1].length > 0 && engReg.test(arr[0].toUpperCase()) ? (<li className="catalog-char__item" key={arr[0]} onClick={() => scrollToElem(arr[0])}>
+                                {arr[0].toUpperCase()}
+                            </li>) : null
+                        )}
+                    </ul>
+
+                    <ul className="catalog-char__list">
+                        {Object.entries(catalogData).map(arr =>
+                            arr[1].length > 0 && ukrReg.test(arr[0].toUpperCase()) ? (<li className="catalog-char__item" key={arr[0]} onClick={() => scrollToElem(arr[0])}>
                                 {arr[0].toUpperCase()}
                             </li>) : null
                         )}
@@ -278,13 +307,13 @@ const Catalog = (props) => {
                     <tbody className="catalog-table__tbody">
                         {Object.entries(catalogData).map((char, index) =>
                             char[1].length > 0 ? (
-                            <tr className="catalog-table__tr" key={index}>
+                            <tr id={char[0]} className="catalog-table__tr" key={index}>
                                 <td className="catalog-table__td">
-                                    <span id={char[0]} className="catalog-table__span">{char[0].toUpperCase()}</span>
+                                    <span className="catalog-table__span">{char[0].toUpperCase()}</span>
                                 </td>
 
                                 <td className="catalog-table__td">
-                                    {char[1].map(arr => 
+                                    {char[1].sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).map(arr => 
                                         <p id={arr.name} className="catalog-table__text" key={arr.id} onClick={() => handleEditMode(arr.id)}>{arr.name}</p>
                                     )}
                                 </td>

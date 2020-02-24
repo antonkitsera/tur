@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import API from "../API";
+import React, { useState, useRef, useEffect } from 'react';
+import API from "../adminAPI";
 
 import IconArrowDown from "../assets/g-icon-arrow_down.svg"
-import BookDeleteIcon from "../assets/book-search-delete.svg"
 
 const BookSelect = props => {
 
@@ -12,8 +11,15 @@ const BookSelect = props => {
 
     const [listStatus, setListStatus] = useState(false);
 
-    const [search, setSearch] = useState(false);
-    const [searchMultiple, setSearchMultiple] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
+    
+    const ref = useRef();
+
+    const handleClickOutside = e => {
+        if (ref.current && !ref.current.contains(e.target)) {
+            setListStatus(false);
+        }
+    };
 
     useEffect(() => {
         if(props.subject === "illustration") {
@@ -21,8 +27,8 @@ const BookSelect = props => {
                 {id: 0, name: "З ілюстраціями"}, 
                 {id: 1, name: "Без ілюстрацій"}
             ])
-        } else if(props.subject === "author" || props.subject === "ph") {
-            console.log("author/ph")
+        } else if(props.subject === "subcategory") {
+            setSubjectData(props.subcatData);
         } else {
             API.get(`/admin/${props.subject}`)
             .then(res => {
@@ -31,17 +37,6 @@ const BookSelect = props => {
         }
 
         switch(props.subject) {
-            case "author":
-                setBlockTitle("Автор");
-                setSelectTitle("Оберіть автора");
-                setSearch(true);
-                setSearchMultiple(true);
-                break;
-            case "ph":
-                setBlockTitle("Видавництво");
-                setSelectTitle("Оберіть видавництво");
-                setSearch(true);
-                break;
             case "category":
                 setBlockTitle("Категорія");
                 setSelectTitle("Виберіть категорію");
@@ -49,6 +44,10 @@ const BookSelect = props => {
             case "subcategory":
                 setBlockTitle("Підкатегорія");
                 setSelectTitle("Виберіть підкатегорію");
+                break;
+            case "sp-categories":
+                setBlockTitle("Спеціальна категорія");
+                setSelectTitle("Виберіть спец-категорію");
                 break;
             case "gender":
                 setBlockTitle("Стать");
@@ -72,53 +71,54 @@ const BookSelect = props => {
                 break;
 
             default:
-                console.log("no info")
+                return ""
         }
 
-    }, []);
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [props.subcatData, props.subject, searchTerm]);
 
     const handleRequestList = () => {
-        if(subjectData.length > 0) {
-            setListStatus(!listStatus);
-        }
+        setListStatus(!listStatus);
     }
 
     const handleOption = e => {
         props.changeFunctionSelect(props.subject, e.target.value);
-        setListStatus(false)
-        console.log(props.subject, e.target.value, props.title)
-    }
+        setListStatus(false);
 
-    const handleSearch = e => {
-        
+        if(props.subject === "author" || props.subject === "ph") {
+            setSearchTerm("");
+        }
     }
 
     return (
         <div className="book-select">
-            {props.subject === "gender" ? <h3 className="book__subtitle">{blockTitle}</h3> :
+            {props.subject === "gender" || props.subject === "sp-categories" ? <h3 className="book__subtitle">{blockTitle}</h3> :
             <span className="book__span">{blockTitle}</span>}
 
-            <div data-id="categoryList" className="book-select__header" onClick={handleRequestList}>
-                <button data-id="categoryList"  className="book-select__button" onClick={handleRequestList}>
-                    {searchMultiple ?
-                        <span className="book-search-item">Дж. К. Роулінг <img className="book-search-item__icon" src={BookDeleteIcon} alt=""/></span> 
-                        :
-                        props.title ? props.title : selectTitle}
-                </button>
-
-                {search ? <input className="book-search__search" type="text" placeholder={1 > 0 ? "" : "Введіть автора"}/> : null}
-
-                <img className="book-select__arrow" src={IconArrowDown} alt=""/>
+            <div ref={ref}>
+                <div className="book-select__header" onClick={handleRequestList}>
+                    <button className={`book-select__button${
+                        props.subject === "illustration" ? 
+                        props.title === null ? " placeholder" : "" : !props.title ? " placeholder" : ""}`} onClick={handleRequestList}>
+                        {props.subject === "illustration" ? 
+                        props.title === null ? selectTitle :
+                        props.title ? "З ілюстраціями" :
+                        !props.title ? "Без ілюстрацій" : 
+                        selectTitle : props.title ? props.title : selectTitle}
+                    </button>
+                    <img className="book-select__arrow" src={IconArrowDown} alt=""/>
+                </div>
+    
+                {listStatus ? <div className="book-select__content">
+                    {subjectData.map(item =>    
+                        <label className="book-select__label" key={item.id}>
+                            <input className="book-select__input" type="radio" name="category" value={`${item.id}/${item.name}`} onChange={handleOption}/>
+                            {item.name}
+                        </label>
+                    )}
+                </div> : null}
             </div>
-
-            {listStatus ? <div className="book-select__content">
-                {subjectData.map(item =>    
-                    <label className="book-select__label" key={item.id}>
-                        <input className="book-select__input" type="radio" name="category" value={`${item.id}/${item.name}`} onChange={handleOption}/>
-                        {item.name}
-                    </label>
-                )}
-            </div> : null}
         </div>
     );
 }

@@ -1,0 +1,223 @@
+@import "variables";
+
+.users {
+    margin-left: 255px;
+    overflow: auto;
+    background-color: $color-white-light;
+
+    &__wrapper {
+        background-color: $color-white;
+    }
+
+    &__title {
+        margin: 0;
+        padding: 32px 48px 37px;
+        font-family: $font;
+        font-weight: bold;
+        font-size: 34px;
+        line-height: 41px;
+        letter-spacing: 0.374px;
+        color: $color-black-dark;
+    }
+
+    &-table {
+        display: block;
+        overflow: auto;
+        width: inherit;
+
+        &__head {
+            border-bottom: 1px solid $color-white-gray;
+        }
+
+        &__body {}
+
+        &__tr {
+            border-bottom: 1px solid $color-white-gray;
+        }
+
+        &__th, &__td {
+            padding-top: 14px;
+            padding-bottom: 14px;
+            padding-left: 20px;
+            padding-right: 20px;
+            font-family: $font;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 22px;
+            color: $color-black-dark;
+            
+            &:first-of-type {
+                padding-left: 48px;
+            }
+
+            &:last-of-type {
+                padding-right: 32px;
+            }
+        }
+
+        &__th {
+            font-weight: bold;
+        }
+
+        &__td {
+            font-weight: 600;
+        }
+
+        &__button {
+            padding: 5px 25px;
+            border: none;
+            font-family: $font;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+            align-items: center;
+            color: $color-white;
+            border-radius: 4px;
+            background-color: $color-black-dark;
+
+            &:hover {
+                color: $color-white;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.user {
+    &__headline {
+        padding: 32px 48px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__title {
+        margin: 0;
+        font-family: $font;
+        font-weight: bold;
+        font-size: 34px;
+        line-height: 41px;
+        letter-spacing: 0.374px;
+        color: $color-black-dark;
+    }
+
+    &__date {
+        margin: 0;
+        font-family: $font;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 41px;
+        letter-spacing: 0.374px;
+        color: $color-gray-dark;
+    }
+
+    &__subtitle {
+        margin: 0;
+        padding: 15px 48px 22px;
+        font-family: $font;
+        font-weight: bold;
+        font-size: 28px;
+        line-height: 41px;
+        letter-spacing: 0.374px;
+        color: $color-black-dark;
+    }
+
+    &-info {
+        padding: 27px 48px 21px;
+        display: flex;
+        border-bottom: 1px solid $color-white-gray;
+
+        &__block {
+            display: grid;
+            grid-column-gap: 55px;
+            grid-row-gap: 17px;
+
+            &:nth-child(1) {
+                grid-template-columns: 80px 1fr;
+                margin-right: 92px;
+            }
+
+            &:nth-child(2) {
+                grid-template-columns: 160px 1fr;
+            }
+        }
+
+        &__key, &__value {
+            margin: 0;
+            font-family: $font;
+            font-size: 18px;
+            line-height: 22px;
+            color: $color-black-dark;
+        }
+
+        &__key {
+            font-weight: normal;
+        }
+
+        &__value {
+            font-weight: bold;
+        }
+    }
+
+    &-table {
+        display: block;
+        overflow: auto;
+        width: inherit;
+
+        &__head {
+            border-bottom: 1px solid $color-white-gray;
+        }
+
+        &__body {}
+
+        &__tr {
+            border-bottom: 1px solid $color-white-gray;
+        }
+
+        &__th, &__td {
+            padding-top: 14px;
+            padding-bottom: 14px;
+            padding-left: 20px;
+            padding-right: 20px;
+            font-family: $font;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 22px;
+            color: $color-black-dark;
+            
+            &:first-of-type {
+                padding-left: 48px;
+            }
+
+            &:last-of-type {
+                padding-right: 32px;
+            }
+        }
+
+        &__th {
+            font-weight: bold;
+        }
+
+        &__td {
+            font-weight: 600;
+        }
+
+        &__button {
+            padding: 5px 25px;
+            border: none;
+            font-family: $font;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+            align-items: center;
+            color: $color-white;
+            border-radius: 4px;
+            background-color: $color-black-dark;
+
+            &:hover {
+                color: $color-white;
+                text-decoration: none;
+            }
+        }
+    }
+}

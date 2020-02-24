@@ -1,9 +1,11 @@
 import React from "react"
 import { NavLink } from 'react-router-dom'
+import API from "../adminAPI";
 
 import Logo from "../assets/thebooks-logo_black.svg"
 
 import ItemsIcon from "../assets/sidenav-icon-items.svg"
+import LangIcon from "../assets/sidenav-icon-lang.svg"
 import AdvIcon from "../assets/sidenav-icon-adv.svg"
 import AuthorsIcon from "../assets/sidenav-icon-authors.svg"
 import PublIcon from "../assets/sidenav-icon-publ.svg"
@@ -22,63 +24,88 @@ const Sidenav = () => {
             id: 1,
             name: "Товари",
             link: "/admin/goods/all",
+            slug: "/admin/goods",
             icon: ItemsIcon
         },
         {
             id: 2,
-            name: "Банери",
-            link: "/admin/banners",
-            icon: AdvIcon
+            name: "Мови",
+            link: "/admin/languages",
+            slug: "/admin/languages",
+            icon: LangIcon
         },
         {
             id: 3,
-            name: "Автори",
-            link: "/admin/authors",
-            icon: AuthorsIcon
+            name: "Банери",
+            link: "/admin/banners",
+            slug: "/admin/banners",
+            icon: AdvIcon
         },
         {
             id: 4,
-            name: "Видавництва",
-            link: "/admin/publishments",
-            icon: PublIcon
+            name: "Автори",
+            link: "/admin/authors",
+            slug: "/admin/authors",
+            icon: AuthorsIcon
         },
         {
             id: 5,
-            name: "Категорії",
-            link: "/admin/categories/1",
-            icon: CategIcon
+            name: "Видавництва",
+            link: "/admin/publishments",
+            slug: "/admin/publishments",
+            icon: PublIcon
         },
         {
             id: 6,
-            name: "Замовлення",
-            link: "/admin/orders",
-            icon: OrdersIcon
+            name: "Категорії",
+            link: "/admin/categories/1",
+            slug: "/admin/categories",
+            icon: CategIcon
         },
         {
             id: 7,
-            name: "Знижки",
-            link: "/admin/sales",
-            icon: SalesIcon
+            name: "Замовлення",
+            link: "/admin/orders",
+            slug: "/admin/orders",
+            icon: OrdersIcon
         },
         {
             id: 8,
-            name: "Статистика",
-            link: "/admin/stats",
-            icon: StatsIcon
+            name: "Знижки",
+            link: "/admin/sales",
+            slug: "/admin/sales",
+            icon: SalesIcon
         },
         {
             id: 9,
-            name: "Користувачі",
-            link: "/admin/users",
-            icon: UsersIcon
+            name: "Статистика",
+            link: "/admin/stats",
+            slug: "/admin/stats",
+            icon: StatsIcon
         },
         {
             id: 10,
+            name: "Користувачі",
+            link: "/admin/users",
+            slug: "/admin/users",
+            icon: UsersIcon
+        },
+        {
+            id: 11,
             name: "Заявки",
             link: "/admin/requests",
+            slug: "/admin/requests",
             icon: RequestsIcon
         },
     ]
+
+    const submitLogOut = () => {
+        API.post("/admin/logout")
+        .then(res => {
+            localStorage.removeItem('adminToken');
+        })
+        window.location.pathname = "/admin";
+    }
 
     return(
     <section className="sidenav">
@@ -90,7 +117,9 @@ const Sidenav = () => {
             <ul className="sidenav-list">
                 {navObj.map(item =>
                     <li className="sidenav-list__item" key={item.id}>
-                        <NavLink className="sidenav-list__link" activeClassName="active" to={item.link}>
+                        <NavLink className="sidenav-list__link" activeClassName="active" to={item.link}
+                        isActive={(match, location) => location.pathname.startsWith(item.slug)}
+                        >
                             <img className="sidenav-list__icon" src={item.icon} alt={item.name}/>
                             {item.name}
                         </NavLink>
@@ -99,7 +128,7 @@ const Sidenav = () => {
             </ul>
         </div>
 
-        <a className="sidenav-exit" href="/">
+        <a className="sidenav-exit" onClick={submitLogOut}>
             <img className="sidenav-exit__icon" src={ExitIcon} alt="Goods"/>
             Вихід
         </a>

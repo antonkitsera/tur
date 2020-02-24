@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../adminComponents/Layout"
-import API from "../API";
+import API from "../adminAPI";
 
 import "../adminComponents/style/banners.scss"
 
@@ -28,7 +28,7 @@ const BannersPage = () => {
     useEffect(() => {
         API.get(`/admin/banner`)
         .then(res => {
-            console.log(res);
+            
 
             setBannersData(res.data.banners);
         })
@@ -53,7 +53,6 @@ const BannersPage = () => {
     };
 
     const handleEdit = itemId => {
-        console.log(itemId)
 
         if(imageChanged) {
             setImageChanged(false);
@@ -61,7 +60,7 @@ const BannersPage = () => {
 
         API.get(`/admin/banner`, { params: { id: itemId }})
         .then(res => {
-            console.log(res);
+            
 
             let toDataURL = (url, callback) => {
                 let xhr = new XMLHttpRequest();
@@ -101,16 +100,14 @@ const BannersPage = () => {
     }
 
     const handleDelete = itemId => {
-        
-        console.log(itemId);
 
         API.delete(`/admin/banner`, { params: {id: itemId}})
         .then(res => {
-            console.log(res);
+            
 
             API.get(`/admin/banner`)
             .then(res => {
-                console.log(res);
+                
     
                 setBannerItem(InitialItem);
                 setBannersData(res.data.banners);
@@ -128,11 +125,11 @@ const BannersPage = () => {
 
         API.post(`/admin/banner`, {link: bannerItem.link, data: bannerItem.path})
         .then(res => {
-            console.log(res);
+            
 
             API.get(`/admin/banner`)
             .then(res => {
-                console.log(res);
+                
     
                 setBannerItem(InitialItem);
                 setBannersData(res.data.banners);
@@ -144,15 +141,13 @@ const BannersPage = () => {
         e.preventDefault();
         if (!bannerItem.link || !bannerItem.path) return;
 
-        console.log({id: bannerItem.id, name: bannerItem.link, data: bannerItem.path});
-
         API.patch(`/admin/banner`, {id: bannerItem.id, link: bannerItem.link, data: bannerItem.path})
         .then(res => {
-            console.log(res);
+            
 
             API.get(`/admin/banner`)
             .then(res => {
-                console.log(res);
+                
     
                 setBannerItem(InitialItem);
                 setBannersData(res.data.banners);

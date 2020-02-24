@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../adminComponents/Layout"
-import API from "../API";
+import API from "../adminAPI";
 
 import "../adminComponents/style/sales.scss"
 
@@ -11,7 +11,7 @@ const SalesPage = () => {
     useEffect(() => {
         API.get(`/admin/sale`)
         .then(res => {
-            console.log(res);
+            
 
             setSalesData(res.data.sales)
         })
@@ -22,7 +22,7 @@ const SalesPage = () => {
 
         API.post(`/admin/sale`, {"sales": salesData})
         .then(res => {
-            console.log(res);
+            
             alert(res.status === 200 ? 'success' : 'error')
         })
     }
@@ -38,7 +38,7 @@ const SalesPage = () => {
                         <div className="sales__item" key={id}>
                             <label className="g-number">
                                 <span className="g-number__text">Накопичена сума, грн</span> 
-                                <input className="g-number__input" type="number" value={(amount)} required
+                                <input className="g-number__input" type="number" placeholder="Введіть суму" value={(amount)} required
                                 onChange={e => {
                                     setSalesData([...salesData].map(object => {
                                       if(object.id === id) {
@@ -56,7 +56,7 @@ const SalesPage = () => {
 
                             <label className="g-number">
                                 <span className="g-number__text">Знижка, %</span> 
-                                <input className="g-number__input" type="number" value={sale} min="0" max="100" required
+                                <input className="g-number__input" type="number" value={sale} min="0" max="100" placeholder="Введіть знижку" required
                                 onChange={e => {
                                     setSalesData([...salesData].map(object => {
                                       if(object.id === id) {

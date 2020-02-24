@@ -28,12 +28,21 @@ function AdminItem({items, changeCart}, props) {
                 <Link to={`/item/${items.id}`}
                       className={'title'}>{items.name}</Link>
                 <span className={'desc'}>Дейл Карнегі</span>
-                <StarRatings
-                    rating={items.id}
-                    starRatedColor="#E9C715"
-                    numberOfStars={5}
-                    name='rating'
-                />
+                <div className={'wrapper_button_review'}>
+                    <StarRatings
+                        rating={items.id}
+                        starRatedColor="#E9C715"
+                        numberOfStars={5}
+                        name='rating'
+                    />
+                    <div className={'price'}>
+                        {items.price.old !== null
+                            ? <s>&#8372;{items.price.old}</s>
+                            : null
+                        }
+                        <span>&#8372;{items.price.new}</span>
+                    </div>
+                </div>
                 <div className={'wrapper_button_price'}>
                     <button className={'buy'} onClick={() => {
                         if (localStorage.getItem('cart') !== null) {
@@ -53,6 +62,7 @@ function AdminItem({items, changeCart}, props) {
                         <span>&#8372;{items.price.new}</span>
                     </div>
                 </div>
+
             </div>
         </div>
     )

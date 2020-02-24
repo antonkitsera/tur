@@ -221,13 +221,14 @@ class Routers extends React.Component {
             if (this.state.search_items.length > 1) {
                 API.get(`/search_books?name=${this.state.search_items}`)
                     .then(res => {
-                        console.log(res.data);
-                        this.setState({
-                            searchItemsArray: res.data.book,
-                            quantityItems: res.data.quantity,
-                            authors: res.data.authors,
-                        });
-                        console.log(this.state)
+                        console.log(res);
+                        if (res.data.quantity > 0) {
+                            this.setState({
+                                searchItemsArray: res.data.book,
+                                quantityItems: res.data.quantity,
+                                authors: res.data.authors,
+                            });
+                        }
                     });
             } else this.setState({
                 searchItemsArray: null,
@@ -237,9 +238,12 @@ class Routers extends React.Component {
     };
 
     render() {
-        const {cart_modal, category_modal, search_items,
+        const {
+            cart_modal, category_modal, search_items,
             quantityItems, authors,
-            searchItemsArray} = this.state;
+            searchItemsArray
+        } = this.state;
+        console.log(searchItemsArray);
         return (
             <div className={'app-container'}>
                 <Router>

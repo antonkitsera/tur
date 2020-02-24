@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../adminComponents/Layout"
-import API from "../API";
+import API from "../adminAPI";
 
 import "../adminComponents/style/stats.scss"
 
@@ -14,7 +14,7 @@ const StatsPage = () => {
     useEffect(() => {
         API.get(`/admin/cat-stat`)
         .then(res => {
-            console.log(res);
+            
             
             setStatsData(res.data.categories)
         })
@@ -25,7 +25,7 @@ const StatsPage = () => {
 
         API.get(`/admin/cat-stat`, { params: {year: dateArr[0], month: dateArr[1], day: dateArr[2]} })
         .then(res => {
-            console.log(res);
+            
             setStatsData([]);
             setStatsData(res.data.categories)
         })

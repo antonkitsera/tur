@@ -1,5 +1,5 @@
-import React, { useState, useEffect} from 'react';
-import API from "../API";
+import React, { useState, useEffect } from 'react';
+import API from "../adminAPI";
 
 import Layout from "../adminComponents/Layout"
 
@@ -11,26 +11,42 @@ const OrdersPage = () => {
 
     const [requestsData, setRequestsData] = useState([]);
     const [options, setOptions] = useState({
-        processed: false, 
-        page: 8, 
+        processed: false,
         per_page: 20
     });
 
+    const [showCount, setShowCount] = useState(0)
+    const [totalCount, setTotalCount] = useState(0);
+    const [leftCount, setLeftCount] = useState(0);
+
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
-        API.get(`/admin/contacts`, {processed: options.processed, page: options.page, per_page: options.per_page})
+        API.get(`/admin/contacts`, {params: {per_page: 20 + showCount}})
         .then(res => {
-            console.log(res);
+            
+            setTotalCount(res.data.total_contacts);
+            setLeftCount(res.data.total_contacts - res.data.contacts.length);
+            setLoading(false)
             
             setRequestsData(res.data.contacts)
         })
-    }, []);
+    }, [showCount]);
+
+    const showMore = () => {
+        if(totalCount / leftCount < 1) {
+            setShowCount(totalCount)
+        } else if(totalCount / leftCount > 1) {
+            setShowCount(prevState => prevState + 20)
+        }
+    }
 
     const handleTabNew = () => {
         setOptions({...options, processed: false});
 
-        API.get(`/admin/contacts`)
+        API.get(`/admin/contacts`, { params: { per_page: 20 + showCount }})
         .then(res => {
-            console.log(res);
+            
             
             setRequestsData([]);
             setRequestsData(res.data.contacts)
@@ -40,9 +56,9 @@ const OrdersPage = () => {
     const handleTabOld = () => {
         setOptions({...options, processed: true});
 
-        API.get(`/admin/contacts`, { params: {processed: options.processed, per_page: 50}})
+        API.get(`/admin/contacts`, { params: {processed: true, per_page: 20 + showCount}})
         .then(res => {
-            console.log(res);
+            
             
             setRequestsData([]);
             setRequestsData(res.data.contacts)
@@ -52,12 +68,10 @@ const OrdersPage = () => {
     const addToOld = (itemId) => {
         API.post(`/admin/contacts`, {id: itemId})
         .then(res => {
-            console.log(res);
+            
 
-            API.get(`/admin/contacts`, {processed: options.processed, page: options.page, per_page: options.per_page})
+            API.get(`/admin/contacts`)
             .then(res => {
-                console.log(res);
-                
                 setRequestsData(res.data.contacts)
             })
         })
@@ -65,7 +79,7 @@ const OrdersPage = () => {
     
     return (
         <Layout>
-            <section className="g-sheets">
+            <section className="g-sheets requests">
                 <div className="g-sheets__wrapper container">
 
                     <div className="g-sheets-view">
@@ -84,9 +98,9 @@ const OrdersPage = () => {
                         </thead>
 
                         <tbody className="g-sheets-table__body">
-                        {requestsData.map(item => 
+                        {requestsData.map((item, index) => 
                             <tr className="g-sheets-table__tr" key={item.contact_id}>
-                                <td className="g-sheets-table__td">{item.contact_id}</td>
+                                <td className="g-sheets-table__td">{index}</td>
                                 <td className="g-sheets-table__td">{item.date.split(" ")[0]} <span className="g-sheets-table__span">{item.date.split(" ")[1]}</span></td>
 
                                 <td className="g-sheets-table__td">{item.number}</td>
@@ -97,6 +111,8 @@ const OrdersPage = () => {
                         )}
                         </tbody>
                     </table>
+
+                    {leftCount ? <button className="g-add" onClick={!loading ? showMore : null}>Показати ще</button> : null}
                 </div>
             </section>
         </Layout>

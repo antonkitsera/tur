@@ -3,8 +3,11 @@ import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 import Routers from './MainPages/Routers';
 import PrivateRoute from "./PrivateRouter";
 
+import ProtectedAdminRoute from "./ProtectedAdminRoute"
+
 import Login from './AdminPages/Login';
 import GoodsPage from './AdminPages/Goods';
+import LanguagesPage from './AdminPages/Languages';
 import BannersPage from './AdminPages/Banners';
 import AuthorsPage from "./AdminPages/Authors";
 import PublishmentsPage from "./AdminPages/Publishments";
@@ -39,17 +42,18 @@ const Router = () => (
             <Route path='/404' component={Routers}/>
 
             <Route exact path='/admin' component={Login}/>
-            <Route exact path='/admin/goods/:id' component={GoodsPage}/>
-            <Route exact path='/admin/goods/:id/:id' component={GoodsPage}/>
-            <Route exact path='/admin/banners' component={BannersPage}/>
-            <Route exact path='/admin/authors' component={AuthorsPage}/>
-            <Route exact path='/admin/publishments' component={PublishmentsPage}/>
-            <Route exact path='/admin/categories/:id' component={CategoriesPage}/>
-            <Route exact path='/admin/orders' component={OrdersPage}/>
-            <Route exact path='/admin/sales' component={SalesPage}/>
-            <Route exact path='/admin/stats' component={StatsPage}/>
-            <Route exact path='/admin/users' component={UsersPage}/>
-            <Route exact path='/admin/requests' component={RequestsPage}/>
+
+            <ProtectedAdminRoute exact path='/admin/goods/:id/:id?' component={GoodsPage}/>
+            <ProtectedAdminRoute exact path='/admin/languages' component={LanguagesPage}/>
+            <ProtectedAdminRoute exact path='/admin/banners' component={BannersPage}/>
+            <ProtectedAdminRoute exact path='/admin/authors' component={AuthorsPage}/>
+            <ProtectedAdminRoute exact path='/admin/publishments' component={PublishmentsPage}/>
+            <ProtectedAdminRoute exact path='/admin/categories/:id' component={CategoriesPage}/>
+            <ProtectedAdminRoute exact path='/admin/orders' component={OrdersPage}/>
+            <ProtectedAdminRoute exact path='/admin/sales' component={SalesPage}/>
+            <ProtectedAdminRoute exact path='/admin/stats' component={StatsPage}/>
+            <ProtectedAdminRoute exact path='/admin/users/:id?' component={UsersPage}/>
+            <ProtectedAdminRoute exact path='/admin/requests' component={RequestsPage}/>
 
             <Redirect to='/404'/>
         </Switch>

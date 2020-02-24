@@ -57,6 +57,10 @@ class CartModal extends React.Component {
                                             Бродяги Дхарми
                                         </Link>
                                         <span className={'desc'}>Джек Куреак</span>
+
+                                        <div className={'item_price_wrapper'}>
+                                            <span className={'price'}>&#8372;{items.price.new * items.quantity}</span>
+                                        </div>
                                         <div className={'counter'}>
                                             <div className={items.quantity <= 1 ?
                                                 'decrement_disable decrement'

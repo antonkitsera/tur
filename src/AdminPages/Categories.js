@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import Layout from "../adminComponents/Layout"
-import API from "../API";
+import API from "../adminAPI";
 
 import "../adminComponents/style/categories.scss"
 
@@ -33,7 +33,6 @@ const CategoriesPage = ({ match }) => {
     const handleRequestListHeader = id => {
         setRequestList(false);
         setCategoryId(id);
-        console.log("id", id)
     }
 
     const handleRequestList = () => {
@@ -49,7 +48,7 @@ const CategoriesPage = ({ match }) => {
     useEffect(() => {
         API.get(`/admin/category`)
         .then(res => {
-            console.log(res);
+            
 
             setCategoriesData(res.data.categories);
             setCategoryId(match.params.id);
@@ -129,11 +128,10 @@ const CategoriesPage = ({ match }) => {
     };
 
     const handleEdit = id => {
-        console.log(id)
 
         API.get(`/admin/category`, { params: { subcategory_id: id }})
         .then(res => {
-            console.log(res);
+            
 
             let toDataURL = (url, callback) => {
                 let xhr = new XMLHttpRequest();
@@ -169,11 +167,11 @@ const CategoriesPage = ({ match }) => {
     const handleDelete = id => {
         API.delete(`/admin/category`, { params: {id: id}})
         .then(res => {
-            console.log(res);
+            
 
             API.get(`/admin/category`)
             .then(res => {
-                console.log(res);
+                
     
                 setSubcategoryItem(InitialItem);
                 setCategoriesData(res.data.categories);
@@ -197,11 +195,11 @@ const CategoriesPage = ({ match }) => {
 
         API.post(`/admin/category`, {category_id: categoryId, subcategory: subcategoryItem.name, data: subcategoryItem.path})
         .then(res => {
-            console.log(res);
+            
 
             API.get(`/admin/category`)
             .then(res => {
-                console.log(res);
+                
     
                 setSubcategoryItem(InitialItem);
                 setCategoriesData(res.data.categories);
@@ -215,11 +213,11 @@ const CategoriesPage = ({ match }) => {
         
         API.patch(`/admin/category`, {id: subcategoryItem.id, name: subcategoryItem.name, data: subcategoryItem.path})
         .then(res => {
-            console.log(res);
+            
 
             API.get(`/admin/category`)
             .then(res => {
-                console.log(res);
+                
     
                 setSubcategoryItem(InitialItem);
                 setCategoriesData(res.data.categories);

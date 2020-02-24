@@ -310,7 +310,7 @@
     position: absolute;
     cursor: pointer;
     top: 32px;
-    right: 40px;
+    right: 20px;
 }
 
 .registration_modal_wrapper .form_content {
@@ -336,6 +336,10 @@
     font-size: 24px;
     line-height: 28px;
     color: #060606
+}
+
+.items_content_wrapper > .item_price_wrapper {
+    display: none !important;
 }
 
 .cart_modal_wrapper .cart_modal .cart_modal_content {
@@ -732,6 +736,10 @@
     border: none
 }
 
+.wrapper_author_maps .every_author {
+    display: grid;
+}
+
 .wrapper_author_maps .every_author,
 .search_modal_wrapper .wrapper_author_length,
 .search_modal_wrapper .every_item,
@@ -809,6 +817,9 @@
     line-height: 19px;
     color: #828181;
 }
+
+
+
 
 @media screen and (max-width: 1450px) {
     .header_wrapper .category_forms a {
@@ -926,6 +937,50 @@
     }
 }
 
+@media screen and (max-width: 700px) {
+    .items_content_wrapper > .item_price_wrapper {
+        justify-content: start !important;
+        justify-self: start !important;
+        display: block !important;
+    }
+
+    .every_items > .item_price_wrapper {
+        display: none !important;
+    }
+    .registration_modal_wrapper .form_content, .cart_modal_wrapper .cart_modal {
+        width: 90%;
+    }
+    .cart_modal_wrapper .cart_modal .every_items {
+        grid-template-columns: 75px 0.5fr 1fr;
+        grid-gap: 16px;
+
+    }
+    .items_content_wrapper .counter {
+        width: 86px;
+    }
+    .items_content_wrapper .title {
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .items_content_wrapper .desc {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .item_price_wrapper {
+        font-size: 22px;
+        line-height: 20px;
+    }
+    .cart_modal_wrapper .cart_modal .go_to_ordering .ordering a {
+        font-size: 14px;
+    }
+    .registration_modal_wrapper, .cart_modal_wrapper {
+        overflow-y: scroll;
+    }
+    .registration_modal_wrapper .form_content, .cart_modal_wrapper .cart_modal {
+        padding: 5px 20px 10px 20px;
+    }
+}
+
 @media screen and (max-width: 510px) {
     .modal_category_wrapper .content_wrapper, .modal_category_wrapper .content_wrapper .every_category:first-child {
         grid-template-columns: 1fr !important;
@@ -973,6 +1028,10 @@
 @media screen and (max-width: 500px) {
     .header_wrapper {
         grid-template-columns: 40px 40px 10fr
+    }
+
+    .login_registration{
+        margin-top: 50px;
     }
 
     .wrapper_cart_login {
@@ -1027,5 +1086,15 @@
 
     .wrapper_cart_login a {
         grid-gap: 0;
+    }
+
+    .registration_modal_wrapper .sign_from_google .facebook, .registration_modal_wrapper .sign_from_google .google {
+        width: 100%;
+    }
+    .registration_modal_wrapper .sign_from_google {
+        grid-template-columns: 1fr 1fr;
+    }
+    .registration_modal_wrapper .form_content button {
+        width: 100%;
     }
 }

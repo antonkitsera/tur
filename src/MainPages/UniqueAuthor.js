@@ -5,140 +5,25 @@ import author_image from '../image/author_image.png'
 import Title from '../Component/Title'
 import MapAdminItems from "../Component/MapAdminItems";
 import MainFilters from "../Component/MainFilters";
-
-const items = [
-    {
-        id: 1,
-        price: {
-            new: 100,
-            old: 120
-        },
-        unique_status: 3,
-        quantity: 1
-    },
-    {
-        id: 2,
-        price: {
-            new: 100,
-        },
-        unique_status: 3,
-        quantity: 1
-    },
-    {
-        id: 3,
-        price: {
-            new: 100,
-            old: 120
-        },
-        unique_status: 2,
-        quantity: 1
-    },
-    {
-        id: 4,
-        price: {
-            new: 100,
-            old: 120
-        },
-        unique_status: 0,
-        quantity: 1
-    },
-    {
-        id: 5,
-        price: {
-            new: 100,
-            old: 120
-        },
-        unique_status: 1,
-        quantity: 1
-    },
-    {
-        id: 6,
-        price: {
-            new: 100,
-            old: 120
-        },
-        unique_status: 2,
-        quantity: 1
-    },
-    {
-        id: 7,
-        price: {
-            new: 100,
-            old: 120
-        },
-        unique_status: 2,
-        quantity: 1
-    },
-    {
-        id: 8,
-        price: {
-            new: 100,
-            old: 120
-        },
-        unique_status: 1,
-        quantity: 1
-    }
-];
+import API from "../API";
+import {normalizeToLocation} from "react-router-dom/modules/utils/locationUtils";
 
 export default class UniqueAuthor extends React.Component {
     state = {
         currentID: null,
         items: null,
         currentUrlName: null,
-        currentAuthorName: 'Айзек Азімов',
+        currentAuthorName: '',
         currentAuthorImage: null,
-        currentAuthorDesc: 'Айзек Азімов народився в Смоленській області 1920 року в єврейській сім\'ї. В 3 роки разом з батьками переїздить до Брукліна. В 15 років розпочинає навчання в коледжі. А потім в Колумбійському Університеті Нью-Йорка, який в 1941 році закінчує. Вже в 11 років почав писати оповідання. Про роботів вперше написав в 1939 році. Започаткував роботехніку як науку, сформувавши три її закони. Збірка "Я. робот" принесла Азімову шалений успіх. Його роботи це миролюбиві істоти, які є помічниками людей. Також з великим успіхом писав науково-фантастичні детективи. Найвідомішим є роман "Сталеві печери". Помер Айзек Азімов коли йому було 72 роки.',
+        currentAuthorDesc: '',
         start_range_value: 'Оберіть ціну',
         max_price_range: 5000,
         min_price_range: 0,
-        dataAuthorArray: [
-            {
-                name: "Українська",
-                id: 3,
-                check: false
-            },
-            {
-                name: "Польська",
-                id: 4,
-                check: false
-            },
-        ],
-        dataPublishingArray: [
-            {
-                name: "Українська",
-                id: 3,
-                check: false
-            },
-            {
-                name: "Польська",
-                id: 4,
-                check: false
-            },
-        ],
-        dataLanguageArray: [
-            {
-                name: "Українська",
-                id: 3,
-                check: false
-            },
-            {
-                name: "Польська",
-                id: 4,
-                check: false
-            },
-        ],
-        dataCoverArray: [
-            {
-                name: "Українська",
-                id: 3,
-                check: false
-            },
-            {
-                name: "Польська",
-                id: 4,
-                check: false
-            },
-        ],
+        dataAuthorArray: null,
+        dataPublishingArray: null,
+        dataLanguageArray: null,
+        dataCoverArray: null,
+        currentFiltersUrl: null
     };
     changeRangeValue = val => {
         if (val.start > val.end) {
@@ -165,6 +50,10 @@ export default class UniqueAuthor extends React.Component {
 
 
     addingToActiveArray = event => {
+        let activeArrayLanguage = [];
+        let activeArrayCover = [];
+        let activeArrayAuthor = [];
+        let activeArrayPh = [];
         switch (event.target.name) {
             case 'author':
                 let currentAuthorId = Number(event.target.getAttribute('data-key'));
@@ -196,10 +85,30 @@ export default class UniqueAuthor extends React.Component {
                 let changeCoverChecked = this.getChangeCheck(currentCoverId, newCoverArr);
                 this.setState({
                     dataCoverArray: changeCoverChecked
+                }, () => {
+                    changeCoverChecked.forEach(item => {
+                        if (item.check) activeArrayCover.push(item.id)
+                    });
+                    API.get(`${this.state.currentFiltersUrl}&cover=${activeArrayCover}`)
+                        .then(res => console.log(res))
                 });
                 break;
             default:
                 return
+        }
+    };
+    createLinks = (array, value) => {
+        let changeUrl = this.state.currentFiltersUrl;
+        let activeId = [];
+        array.forEach(item => {
+            if (item.check) activeId.push(item.id)
+        });
+        if (!changeUrl.includes(`${value}=`)) {
+            return changeUrl.concat(`&${value}=${activeId}`);
+        } else {
+            let sliceURL = changeUrl.split(`${value}=`);
+            let concatArray = sliceURL.concat(`&${value}=${activeId}`);
+            return concatArray
         }
     };
 
@@ -210,7 +119,36 @@ export default class UniqueAuthor extends React.Component {
             currentID: currentUrl,
             currentUrlName: currentUrlName,
         }, () => {
-
+            if (currentUrlName === 'author') {
+                API.get(`/author?id=${this.state.currentID}`)
+                    .then(res => {
+                        this.setState({
+                            currentAuthorName: res.data.author.name,
+                            currentAuthorDesc: res.data.author.description,
+                            currentAuthorImage: process.env.REACT_APP_API_URL +"/"+res.data.author.path,
+                            currentFiltersUrl: `/author?id=${this.state.currentID}`,
+                            items: res.data.books,
+                            dataPublishingArray: res.data.ph,
+                            dataLanguageArray: res.data.languages,
+                            dataCoverArray: res.data.cover_types
+                        })
+                    })
+            } else {
+                API.get(`/ph?id=${this.state.currentID}`)
+                    .then(res => {
+                        this.setState({
+                            currentAuthorName: res.data.ph.name,
+                            currentAuthorDesc: res.data.ph.description,
+                            currentAuthorImage: process.env.REACT_APP_API_URL +"/"+res.data.ph.path,
+                            items: res.data.books,
+                            currentFiltersUrl: `/ph?id=${this.state.currentID}`,
+                            dataAuthorArray: res.data.authors,
+                            dataPublishingArray: null,
+                            dataLanguageArray: res.data.languages,
+                            dataCoverArray: res.data.cover_types
+                        })
+                    })
+            }
         });
     };
 
@@ -224,16 +162,17 @@ export default class UniqueAuthor extends React.Component {
     };
     getCurrentUrl = () => {
         let url = window.location.href;
-        return url.split('').pop()
+        return url.split('/').pop()
     };
 
     render() {
         const {
             currentUrlName, currentAuthorName, currentAuthorDesc,
             start_range_value, min_price_range, dataPublishingArray,
-            max_price_range, dataAuthorArray,
-            dataLanguageArray, dataCoverArray
+            max_price_range, dataAuthorArray, items,
+            dataLanguageArray, dataCoverArray, currentAuthorImage
         } = this.state;
+        console.log(currentUrlName)
         return (
             <div className={'unique_author_wrapper'}>
                 {currentUrlName !== null ?
@@ -248,25 +187,28 @@ export default class UniqueAuthor extends React.Component {
                 }
                 <div className={'unique_author_content'}>
                     <div className={'img_wrapper'}>
-                        <img src={author_image} alt=""/>
+                        <img src={currentAuthorImage} alt="" width={"100%"}/>
                     </div>
                     <div className={'desc_wrapper'}>
                         <p>{currentAuthorDesc}</p>
                     </div>
                 </div>
-                <MainFilters start_range_value={start_range_value}
-                             dataPublishingArray={currentUrlName !== 'author' ? dataPublishingArray : null}
-                             dataCoverArray={dataCoverArray}
-                             dataAuthorArray={currentUrlName === 'author' ? dataAuthorArray : null}
-                             dataLanguageArray={dataLanguageArray}
-                             addingToActiveArray={this.addingToActiveArray}
-                             min_price_range={min_price_range}
-                             max_price_range={max_price_range}
-                             changeRangeValue={this.changeRangeValue}/>
-                <div className={'another_author_items'}>
-                    <Title title={'Книги автора'}/>
-                    <MapAdminItems items={items}/>
-                </div>
+                {items ? <MainFilters start_range_value={start_range_value}
+                                      dataPublishingArray={currentUrlName !== 'author' ? dataPublishingArray : null}
+                                      dataCoverArray={dataCoverArray}
+                                      dataAuthorArray={currentUrlName === 'publishing' ? dataAuthorArray : null}
+                                      dataLanguageArray={dataLanguageArray}
+                                      addingToActiveArray={this.addingToActiveArray}
+                                      min_price_range={min_price_range}
+                                      max_price_range={max_price_range}
+                                      changeRangeValue={this.changeRangeValue}/> : null}
+                {items
+                    ? <div className={'another_author_items'}>
+                        <Title title={'Книги автора'}/>
+                        <MapAdminItems items={items}/>
+                    </div>
+                    : null
+                }
             </div>
         )
     }
